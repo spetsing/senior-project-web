@@ -1,30 +1,32 @@
-// modules =================================================
-var express        = require('express');
-var app            = express();
-var mongoose       = require('mongoose');
-var bodyParser     = require('body-parser');
-var methodOverride = require('method-override');
+var express = require('express');
+//var MongoClient = require('mongodb').MongoClient;
+//var fs = require('fs');
+var bodyParser = require('body-parser');
+var app = express();
+//var mongoCredentials = require('./mongocredentials');
+//var urlTimeRecorderDB = 'mongodb://'+ mongoCredentials.dbName + ':' + mongoCredentials.password + '@127.0.0.1:27017/battleship';
+var routes = require('./app/routes');
 
-// configuration ===========================================
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static(__dirname + '/public'));
 
-// config files
-var db = require('./config/db');
 
-var port = process.env.PORT || 8080; // set our port
-// mongoose.connect(db.url); // connect to our mongoDB database (commented out after you enter in your own credentials)
+//Points incomming request to routes files
+routes(app);
 
-// get all data/stuff of the body (POST) parameters
-app.use(bodyParser.json()); // parse application/json
-app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
-app.use(bodyParser.urlencoded({ extended: true })); // parse application/x-www-form-urlencoded
 
-app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
-app.use(express.static(__dirname + '/public')); // set the static files location /public/img will be /img for users
+/* MongoClient.connect(urlTimeRecorderDB, function(err,database){
+	if(err) return console.log(err);
+	else {
+		console.log('Connected to MongoDB!');
+		battleshipDB = database;
+	}
+app.listen(3001, function () {
+  console.log('Listening on port 3001!');
+});
 
-// routes ==================================================
-require('./app/routes')(app); // pass our application into our routes
+}); */
 
-// start app ===============================================
-app.listen(port);
-console.log('Magic happens on port ' + port); 			// shoutout to the user
-exports = module.exports = app; 						// expose app
+app.listen(8080, function () {
+  console.log('Listening on port 8080!');
+});
