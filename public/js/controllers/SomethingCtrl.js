@@ -2,9 +2,10 @@
 /*global angular */
 'use strict';
 
-angular.module('SomethingApp', ['ngRoute', '$scope', 'SomethingService', 'console'])
-    .controller('SomethingCtrl', function ($scope, SomethingService, console) {
+angular.module('Something')
+    .controller('SomethingCtrl', function ($scope, SomethingService, console, $window) {
         SomethingService.get(function (data) {
             console.log(data);
+            $window.alert("hello world");
         });
     });
