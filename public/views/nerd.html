@@ -1,6 +1,56 @@
-<div class="jumbotron text-center">
-	<h1>Nerds and Proud</h1>
-	<button ng-click="getDeck()">Test</button>
+<div class="jumbotron text-center" xmlns="http://www.w3.org/1999/html">
 
-	<p>{{ tagline }}</p>
+	<div class="backdrop">
+		<div class="title">
+			<h1>Create or Join Game</h1>
+		</div>
+		<img class="bs" src="../img/ship.gif">
+		<div class="boatpic">
+			<div class="form">
+
+				<div class="tab-content">
+					<div id="signup">
+
+
+						<form action="/" method="post">
+								<label>
+									Username<span class="req">*</span>
+								</label>
+
+								<input type="text" required/>
+							<br>
+							<div style="padding-top: 25px">
+							<table cellpadding="10" cellspacing="10" style="margin: auto; padding-bottom: 25px">
+								<tr>
+									<td style="padding-right: 10px">
+										<input type="radio" id="radio01" name="radio" />
+										<label for="radio01"><span></span>Board 1</label>
+										</td>
+									<td rowspan="2">
+										<button type="submit" class="button button3">Battle</button>
+									</td>
+								</tr>
+									<tr>
+										<td style="padding-right: 10px">
+											<input type="radio" id="radio02" name="radio" />
+											<label for="radio02"><span></span>Board 2</label>
+										</td>
+									</tr>
+							</table>
+								</div>
+						</form>
+
+					</div>
+
+
+
+				</div><!-- tab-content -->
+
+			</div> <!-- /form -->
+
+			<p>{{ tagline }}</p>
+		</div>
+	</div>
+
+
 </div>

@@ -1,42 +1,32 @@
 body { padding-top:30px; }
-button {
-    display: inline-block;
-    border-radius: 4px;
-    background-color: #f4511e;
+.button {
+    font-family: myFirstFont;
+    background-color: #4CAF50; /* Green */
     border: none;
-    color: #FFFFFF;
+    color: dodgerblue;
+    padding: 20px 40px;
     text-align: center;
-    font-size: 28px;
-    padding: 20px;
-    width: 200px;
-    transition: all 0.5s;
-    cursor: pointer;
-    margin: 5px;
-}
-
-button span {
-    cursor: pointer;
+    text-decoration: none;
     display: inline-block;
-    position: relative;
-    transition: 0.5s;
+    font-size: 28px;
+    /*margin: 4px 2px;*/
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
 }
 
-button span:after {
-    content: '\00bb';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
+
+
+.button {
+    background-color: dodgerblue;
+    color: black;
+    border: 2px solid #f44336;
 }
 
-button:hover span {
-    padding-right: 25px;
-}
-
-button:hover span:after {
-    opacity: 1;
-    right: 0;
+.button3:hover {
+    background-color: #f44336;
+    color: white;
 }
 
 @font-face {
@@ -61,6 +51,7 @@ h1
 .boatpic
 {
     padding-top: 10%;
+    padding-bottom: 10%;
     background-color: dodgerblue;
 }
 
@@ -71,3 +62,49 @@ h1
 audio {
     display:none;
 }
+
+input[type=text] {
+    padding: 12px 20px;
+    border: 3px solid red;
+    border-radius: 4px;
+}
+
+div {
+    margin:0 0 0.75em 0;
+}
+
+input[type="radio"] {
+    display:none;
+}
+input[type="radio"] + label {
+    color: black;
+    font-family:Arial, sans-serif;
+    font-size:14px;
+}
+input[type="radio"] + label span {
+    display:inline-block;
+    width:19px;
+    height:19px;
+    margin:-1px 4px 0 0;
+    vertical-align:middle;
+    cursor:pointer;
+    -moz-border-radius:  50%;
+    border-radius:  50%;
+}
+
+input[type="radio"] + label span {
+    background-color: black;
+}
+
+input[type="radio"]:checked + label span{
+    background-color: red;
+}
+
+input[type="radio"] + label span,
+input[type="radio"]:checked + label span {
+    -webkit-transition:background-color 0.4s linear;
+    -o-transition:background-color 0.4s linear;
+    -moz-transition:background-color 0.4s linear;
+    transition:background-color 0.4s linear;
+}
+
