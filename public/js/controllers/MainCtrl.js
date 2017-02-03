@@ -1,6 +1,6 @@
 angular.module('MainCtrl', []).controller('MainController', function($scope, $http) {
 
-	$scope.tagline = 'To the moon and back!';
+	$scope.tagline = 'A Project By CS Students at Kennesaw State University';
 
     $scope.onClick = function(){
         /*var req = {
@@ -11,6 +11,7 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
          }
         }*/
 
+
         $http({
           method: 'GET',
           url: 'https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1'
@@ -20,7 +21,7 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
             console.log(response);
           });
 
-    }
+    };
     function x() {
         alert("it worked!");
     }
