@@ -46,7 +46,7 @@ h1
 
 .title
 {
-    padding-bottom: 10%;
+    padding-bottom: 3%;
 }
 .boatpic
 {
@@ -93,18 +93,19 @@ input[type="radio"] + label span {
 }
 
 input[type="radio"] + label span {
-    background-color: black;
+    background-color: dodgerblue;
 }
 
 input[type="radio"]:checked + label span{
     background-color: red;
 }
 
-input[type="radio"] + label span,
-input[type="radio"]:checked + label span {
-    -webkit-transition:background-color 0.4s linear;
-    -o-transition:background-color 0.4s linear;
-    -moz-transition:background-color 0.4s linear;
-    transition:background-color 0.4s linear;
-}
+/*input[type="radio"] + label span,*/
+/*input[type="radio"]:checked + label span {*/
+    /*-webkit-transition:background-color 0.4s linear;*/
+    /*-o-transition:background-color 0.4s linear;*/
+    /*-moz-transition:background-color 0.4s linear;*/
+    /*transition:background-color 0.4s linear;*/
+/*}*/
+
 

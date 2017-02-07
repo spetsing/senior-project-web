@@ -9,6 +9,7 @@
 	<!-- CSS -->
 	<link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css"> <!-- custom styles -->
+	<link rel="stylesheet" href="css/test.css"> <!-- custom styles -->
 
 	<!-- JS -->
 	<script src="/libs/angular/angular.min.js"></script>
@@ -23,6 +24,44 @@
 	<script src="js/services/GeekService.js"></script>
 	<script src="js/appRoutes.js"></script>
 	<script src="js/app.js"></script>
+	<!--Custom Scripts-->
+
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script>
+		$(function() {
+			$('input:radio').hide().each(function() {
+				$(this).attr('data-radio-fx', this.name);
+				var label = $("label[for=" + '"' + this.id + '"' + "]").text();
+				$('<a ' + (label != '' ? 'title=" ' + label + ' "' : '' ) + ' data-radio-fx="'+this.name+'" class="radio-fx" href="#">'+
+						'<span class="radio' + (this.checked ? ' radio-checked' : '') + '"></span></a>').insertAfter(this);
+			});
+			$('a.radio-fx').on('click', function(e) {
+				e.preventDefault();
+				var unique = $(this).attr('data-radio-fx');
+				$("a[data-radio-fx='"+unique+"'] span").attr('class','radio');
+				$(":radio[data-radio-fx='"+unique+"']").attr('checked',false);
+				$(this).find('span').attr('class','radio-checked');
+				$(this).prev('input:radio').attr('checked',true);
+			}).on('keydown', function(e) {
+				if ((e.keyCode ? e.keyCode : e.which) == 32) {
+					$(this).trigger('click');
+				}
+			});
+			/* not needed just for sake ;)*/
+			$('#form').submit(function() {
+				var posts = $(this).serialize();
+				if (posts != '') {
+					alert(posts);
+				} else {
+					alert('please select something, then submit the form!');
+				}
+				return false;
+			});
+			$('#change-skin').change(function() {
+				$('form table').attr('id', this.value);
+			});
+		});
+	</script>
 </head>
 <body ng-app="sampleApp" ng-controller="NerdController">
 
