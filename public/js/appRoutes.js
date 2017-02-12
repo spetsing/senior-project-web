@@ -8,6 +8,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			controller: 'MainController'
 		})
 
+		.when('/socket-test', {
+			templateUrl: 'views/player.html',
+			controller: 'PlayerController'
+		})
+
 		.when('/nerds', {
 			templateUrl: 'views/nerd.html',
 			controller: 'UserController'
