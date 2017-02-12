@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Battleship</title>
+</head>
+<body >
+
+<input type="text" ng-model="playerName"/>
+<h1>{{playerName}}</h1>
+
+<h1>{{tagline}}</h1>
+
+<li ng-repeat="data in messages track by $index">
+    <div>{{data.userName}}</div>
+    <div>{{data.message}}</div>
+
+</li>
+
+<button ng-click="fireWeapon()">Fire Button</button>
+
+</body>
+</html>

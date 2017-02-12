@@ -31,6 +31,11 @@ io.on('connection', function(client) {
     client.on("startGame", function(data) {
         console.log(data.test);
         console.log(data.test2);
-    })
+    });
+
+    client.on("fire", function (data) {
+        console.log(data);
+        io.emit('receive-fire', data);
+    });
 
 });
