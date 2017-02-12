@@ -17,23 +17,23 @@
 									<span class="req"></span>
 								</label>
 
-								<input type="text" required placeholder="Username*">
+								<input type="text" required placeholder="Username*" ng-model="userName">
 							<br>
 							<div style="padding-top: 25px">
 								<table id="skin_1" style="background-color: dodgerblue;margin: auto; padding-bottom: 25px" cellpadding="10" cellspacing="10">
 								<tr>
 									<td style="padding-right: 10px">
-										<input type="radio" id="radio01" name="radio" checked="checked"/>
-										<label for="radio01"><span></span>Board 1</label>
+										<input class="radio-checked" type="radio" id="radio01" name="radio" checked="checked"/>
+										<label ng-click="toggleSelection()" for="radio01"><span ng-class="{'radio-checked': isBoardOneSelected}"></span>Board 1</label>
 										</td>
 									<td rowspan="2">
-										<a href="/geeks"Geeks ng-click="onClick()" class="button button3" style="vertical-align:middle">Battle</a>
+										<a href="/geeks"Geeks ng-click="createUser(userName)" class="button button3" style="vertical-align:middle">Battle</a>
 									</td>
 								</tr>
 									<tr>
 										<td style="padding-right: 10px">
 											<input type="radio" id="radio02" name="radio" />
-											<label for="radio02"><span></span>Board 2</label>
+											<label ng-click="toggleSelection()" for="radio02"><span ng-class="{'radio-checked': isBoardTwoSelected}"></span>Board 2</label>
 										</td>
 									</tr>
 							</table>
