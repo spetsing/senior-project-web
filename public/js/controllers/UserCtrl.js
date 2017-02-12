@@ -9,6 +9,20 @@
     // Create Controller
     function UserController($rootScope, $scope) {
 
+        var socket = io.connect('http://localhost:8080');
+        socket.on('connect', function(data) {
+           // socket.emit('join', 'Hello World from client');
+
+             var x = {
+                test: 1,
+                test2:1
+            }
+            socket.emit("startGame", x);
+
+
+        });
+
+
         $scope.tagline = "Hello World this a test";
         $scope.isBoardOneSelected = true;
         $scope.isBoardTwoSelected = false;
@@ -22,6 +36,11 @@
         $scope.createUser = function () {
             console.log($scope.userName); // Will want to create user with name, but for now just display on console
         }
+
+
+
+
+
     }
 
     UserController.$inject = [
