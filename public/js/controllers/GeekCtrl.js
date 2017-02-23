@@ -10,14 +10,14 @@
 
 	function GeekController($scope, $location, $window) {
 
-		var socket = io.connect('http://localhost:8080');
+		var socket = io.connect('http://ec2-34-195-93-38.compute-1.amazonaws.com:3001');
 		socket.on('connect', function (data) {
 			console.log(data);
 		});
 
 		socket.on('receive-wait', function (data) {
 			if (data >= 2) {
-				$window.location.href = 'http://localhost:8080/socket-test';
+				$window.location.href = 'http://ec2-34-195-93-38.compute-1.amazonaws.com:3001';
 			}
 			console.log(data);
 		});
