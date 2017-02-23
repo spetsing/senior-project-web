@@ -17,8 +17,8 @@ app.get('/', function(req, res,next) {
     res.sendFile(__dirname + '/index.html');
 });
 
-server.listen(8080, function() {
-    console.log("listening on port 8080");
+server.listen(3001, function() {
+    console.log("listening on port 3001");
 });
 
 var clientCount = 0;
