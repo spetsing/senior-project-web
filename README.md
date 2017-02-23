@@ -1,6 +1,6 @@
-# senior-project-web
+# Project Battleship
 This repository will contain the front end and back end files
 
 ## Color Pallette
-![Colors](senior-project-web/images/colors.png)  
+![Colors](senior-project-web/images/colors.png?raw=true)  
 `#4086AA, #91C3DC, #87907D, #AAB6A2, #555555, #666666`
