@@ -17,16 +17,11 @@ app.get('/', function(req, res,next) {
     res.sendFile(__dirname + '/index.html');
 });
 
-server.listen(3001, function() {
-    console.log("listening on port 3001");
+server.listen(8080, function() {
+    console.log("listening on port 8080")
 });
 
-var clientCount = 0;
-
 io.on('connection', function(client) {
-
-
-
     console.log('Client connected...1');
 
     client.on('join', function(data) {
@@ -41,13 +36,6 @@ io.on('connection', function(client) {
     client.on("fire", function (data) {
         console.log(data);
         io.emit('receive-fire', data);
-    });
-
-    client.on("waiting", function (data) {
-        console.log("A player has connected" + data);
-        console.log(io.sockets.sockets.length);
-        ++clientCount;
-        io.emit('receive-wait', clientCount);
     });
 
 });
