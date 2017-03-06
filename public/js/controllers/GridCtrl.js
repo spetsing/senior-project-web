@@ -2,8 +2,8 @@
 /*global angular */
 'use strict';
 
-angular.module('Something')
-    .controller('SomethingCtrl', function ($scope, SomethingService, console, $window) {
+angular.module('Grid')
+    .controller('GridCtrl', function ($scope, SomethingService, console, $window) {
         SomethingService.get(function (data) {
             console.log(data);
             $window.alert("hello world");

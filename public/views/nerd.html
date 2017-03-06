@@ -1,11 +1,41 @@
-<div class="jumbotron text-center" xmlns="http://www.w3.org/1999/html">
+<div class="text-center" xmlns="http://www.w3.org/1999/html">
 
 	<div class="backdrop">
 		<div class="title">
 			<h1>Project Battleship</h1>
 		</div>
-		<img class="bs" src="../img/ship.gif">
-		<div class="boatpic">
+		<div class="sky">
+
+			<div class="flex-container">
+				<div class="fleet-container">
+					<div class="flex-item">
+						<img src="../img/Destroyer.gif" class="flip">
+					</div>
+					<div class="flex-item">
+						<img src="../img/Aircraft%20Carrier.gif" class="flip">
+					</div>
+
+					<div class="flex-item-right">
+						<img src="../img/Battleship.gif" class="flip">
+					</div>
+				</div>
+
+				<div class="fleet-container">
+					<div class="flex-item-left">
+						<img src="../img/Aircraft%20Carrier.gif">
+
+					</div>
+					<div class="flex-item">
+						<img src="../img/Destroyer.gif">
+					</div>
+
+					<div class="flex-item">
+						<img src="../img/Battleship.gif">
+					</div>
+				</div>
+			</div>
+
+		<div class="water">
 			<div class="form">
 
 				<div class="tab-content">
@@ -20,7 +50,7 @@
 								<input type="text" required placeholder="Username*" ng-model="userName">
 							<br>
 							<div style="padding-top: 25px">
-								<table id="skin_1" style="background-color: dodgerblue;margin: auto; padding-bottom: 25px" cellpadding="10" cellspacing="10">
+								<table id="skin_1" style="margin: auto; padding-bottom: 25px" cellpadding="10" cellspacing="10">
 								<tr>
 									<td style="padding-right: 10px">
 										<input class="radio-checked" type="radio" id="radio01" name="radio" checked="checked"/>
@@ -48,8 +78,9 @@
 
 			</div> <!-- /form -->
 
-			<p>{{ tagline }}</p>
+			<!--<p>{{ tagline }}</p>-->
 		</div>
+			<div>
 	</div>
 
 

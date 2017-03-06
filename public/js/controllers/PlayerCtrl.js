@@ -8,7 +8,6 @@
 
     function PlayerController($rootScope, $scope) {
         $scope.playerName = "";
-        var name = "";
         var socket = io.connect('http://localhost:8080');
         socket.on('connect', function (data) {
             console.log(data);
@@ -21,14 +20,12 @@
             $scope.$apply(function () {
                 console.log("taking fire");
                 console.log(data);
-                if (data.userName !== name) {
-                    $scope.messages.push(data);
-                }
+                $scope.messages.push(data);
             });
+            $scope.messages.push(data);
         });
 
         $scope.fireWeapon = function () {
-            name = this.playerName;
             console.log(this.playerName);
             var x = {
                 userName: this.playerName,
