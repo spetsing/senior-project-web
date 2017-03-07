@@ -2,7 +2,7 @@ angular.module('GeekCtrl', []).controller('GeekController', function($scope) {
 
 	$scope.tagline = 'The square root of life is pi!';
 
-<<<<<<< HEAD
+
 	var module = angular.module('GeekCtrl', []);
 
 	function GeekController($scope, $location, $window) {
@@ -33,10 +33,10 @@ angular.module('GeekCtrl', []).controller('GeekController', function($scope) {
 
 	module.controller("GeekController", GeekController);
 
-})(window, window.angular);
-=======
+(window, window.angular);
+
 	setTimeout(function(){
 		window.location='/socket-test';
 	}, 3000);
 });
->>>>>>> origin/develop
+
