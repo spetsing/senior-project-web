@@ -5,63 +5,91 @@
 // });
 
 (function (angular) {
-	'use strict';
+    'use strict';
 
-	var module = angular.module('NerdCtrl', ['NerdService']);
+    var module = angular.module('NerdCtrl', ['NerdService']);
 
-   function NerdController ($scope, NerdService) {
+    function NerdController($scope, NerdService, $location, $window) {
+        var that = this;
+        $("#waitingText").hide();
+        $scope.waitingText="Waiting on other player"
 
-		$scope.getDeck = function () {
-			console.log("getDeck called");
-			console.log(NerdService.get());
-		};
+        $scope.getDeck = function () {
+            console.log("getDeck called");
+            console.log(NerdService.get());
+        };
 
-        $(function() {
-            $('input:radio').hide().each(function() {
-                $(this).attr('data-radio-fx', this.name);
-                var label = $("label[for=" + '"' + this.id + '"' + "]").text();
-                $('<a ' + (label != '' ? 'title=" ' + label + ' "' : '' ) + ' data-radio-fx="'+this.name+'" class="radio-fx" href="#">'+
-                        '<span class="radio' + (this.checked ? ' radio-checked' : '') + '"></span></a>').insertAfter(this);
+
+        //triggered when Battle button is pressed
+        $scope.onBattle = function () {
+            debugger;
+            var board = "";
+            var userName = $("#userName")[0].value;
+
+            if ($("#radio01")[0].checked) {
+                board = "board1"
+            } else {
+                board = "board2"
+            }
+            console.log(board);
+
+            var userData = {
+                board: board,
+                userName: userName
+            }
+            this.userData = userData;
+
+            //make rest call to register player to board
+            $.ajax({
+                type: 'POST',
+                url: 'http://34.195.93.38:3001/registerplayer',
+                data: userData,
+                dataType: 'json',
+                success: function (data) {
+                    this.connectSockets();
+
+
+                }.bind(this),
+                error: function (err) {
+                    //alert(err.responseText);
+                    this.connectSockets();
+                }.bind(this)
             });
-            $('a.radio-fx').on('click', function(e) {
-                e.preventDefault();
-                var unique = $(this).attr('data-radio-fx');
-                $("a[data-radio-fx='"+unique+"'] span").attr('class','radio');
-                $(":radio[data-radio-fx='"+unique+"']").attr('checked',false);
-                $(this).find('span').attr('class','radio-checked');
-                $(this).prev('input:radio').attr('checked',true);
-            }).on('keydown', function(e) {
-                if ((e.keyCode ? e.keyCode : e.which) == 32) {
-                    $(this).trigger('click');
-                }
-            });
-            /* not needed just for sake ;)*/
-            $('#form').submit(function() {
-                var posts = $(this).serialize();
-                if (posts != '') {
-                    alert(posts);
-                } else {
-                    alert('please select something, then submit the form!');
-                }
-                return false;
-            });
-            $('#change-skin').change(function() {
-                $('form table').attr('id', this.value);
+
+
+        };
+
+        //connect to sockets once player has been assigned to the board
+        $scope.connectSockets = function () {
+            console.log("worked");
+            $("#signup").hide();
+            $("#waitingText").css("visibility","");
+
+
+            var socket = io.connect('http://ec2-34-195-93-38.compute-1.amazonaws.com:3001');
+            socket.on('connect', function (data) {
+                console.log(data);
+
             });
 
-        });
-        $('#skin_1 tr').click(function() {
-            $(this).find('th input:radio').prop('checked', true);
+            socket.on("gameReady",function(data) {
+                location.pathname="socket-test";
+            })
+        }
+
+        $(document).ready(function() {
+            $("#waitingText").hide();
         })
 
-	}
+    };
 
 
 
-	NerdController.$inject = [
+
+    NerdController.$inject = [
 		'$scope',
 		'NerdService'
 	];
 
-	module.controller('NerdController', NerdController);
-})(window.angular );
+    module.controller('NerdController', NerdController);
+})(window.angular);

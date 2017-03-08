@@ -47,7 +47,7 @@
 									<span class="req"></span>
 								</label>
 
-								<input type="text" required placeholder="Username*" ng-model="userName">
+								<input id ="userName" type="text" required placeholder="Username*" ng-model="userName">
 							<br>
 							<div style="padding-top: 25px">
 								<table id="skin_1" style="margin: auto; padding-bottom: 25px" cellpadding="10" cellspacing="10">
@@ -57,7 +57,7 @@
 										<label ng-click="toggleSelection()" for="radio01"><span ng-class="{'radio-checked': isBoardOneSelected}"></span>Board 1</label>
 										</td>
 									<td rowspan="2">
-										<a href="/geeks"Geeks ng-click="createUser(userName)" class="button button3" style="vertical-align:middle">Battle</a>
+										<a href="#" Geeks ng-click="onBattle()" class="button button3" style="vertical-align:middle">Battle</a>
 									</td>
 								</tr>
 									<tr>
@@ -71,6 +71,11 @@
 						</form>
 
 					</div>
+                    <div >
+                    <p id="waitingText" style="font-family: myFirstFont; font-size: x-large; visibility: hidden  ">
+                Waiting  for  other  player  to  join.....
+            </p>
+                    </div>
 
 
 

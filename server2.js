@@ -21,7 +21,7 @@ server.listen(8080, function() {
     console.log("listening on port 8080")
 });
 
-io.on('connection', function(client) {
+/*io.on('connection', function(client) {
     console.log('Client connected...1');
 
     client.on('join', function(data) {
@@ -38,4 +38,4 @@ io.on('connection', function(client) {
         io.emit('receive-fire', data);
     });
 
-});
+});*/

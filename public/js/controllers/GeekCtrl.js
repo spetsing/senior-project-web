@@ -1,4 +1,4 @@
-angular.module('GeekCtrl', []).controller('GeekController', function($scope) {
+angular.module('GeekCtrl', []).controller('GeekController', function($scope, $http) {
 
 	$scope.tagline = 'The square root of life is pi!';
 
@@ -7,7 +7,7 @@ angular.module('GeekCtrl', []).controller('GeekController', function($scope) {
 
 	function GeekController($scope, $location, $window) {
 
-		var socket = io.connect('http://ec2-34-195-93-38.compute-1.amazonaws.com:3001');
+       	var socket = io.connect('http://ec2-34-195-93-38.compute-1.amazonaws.com:3001');
 		socket.on('connect', function (data) {
 			console.log(data);
 		});
@@ -35,8 +35,8 @@ angular.module('GeekCtrl', []).controller('GeekController', function($scope) {
 
 (window, window.angular);
 
-	setTimeout(function(){
+	/*setTimeout(function(){
 		window.location='/socket-test';
-	}, 3000);
+	}, 3000);*/
 });
 

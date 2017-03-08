@@ -9,6 +9,11 @@ app.get('/socket-test',function(req, res){
     res.sendFile(path.join(__dirname+'/../public/index.html'));
 });
 
+app.get('/geeks',function(req, res){
+    res.sendFile(path.join(__dirname+'/../public/index.html'));
+});
+
+
 
 //determines if player slot is open when a user submits which player they would like to play as. If a user is already assigned to that position, checks the other position and returns an error message to user.
 app.post("/registerplayer", function(req,res) {
