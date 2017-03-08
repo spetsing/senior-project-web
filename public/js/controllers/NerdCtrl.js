@@ -46,12 +46,13 @@
                 data: userData,
                 dataType: 'json',
                 success: function (data) {
+                    $("#signup").hide();
+                    $("#waitingText").css("visibility","");
                     this.connectSockets();
-
 
                 }.bind(this),
                 error: function (err) {
-                    //alert(err.responseText);
+                    alert(err.responseText);
                     this.connectSockets();
                 }.bind(this)
             });
@@ -62,8 +63,6 @@
         //connect to sockets once player has been assigned to the board
         $scope.connectSockets = function () {
             console.log("worked");
-            $("#signup").hide();
-            $("#waitingText").css("visibility","");
 
 
             var socket = io.connect('http://ec2-34-195-93-38.compute-1.amazonaws.com:3001');
