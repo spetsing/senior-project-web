@@ -1,23 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Project Battleship</title>
-</head>
-<body >
+<html>
+<body>
+<div class="page">
+    <div class="item grid">
+        <div class="row">
+            <div class="square">A1</div>
+            <div class="square">A2</div>
+            <div class="square">A3</div>
+            <div class="square">A4</div>
+            <div class="square">A5</div>
+            <div class="square">A6</div>
+            <div class="square">A7</div>
+            <div class="square">A8</div>
+        </div>
+        <div class="row">
+            <div class="square">B1</div>
+            <div class="square">B2</div>
+            <div class="square">B3</div>
+            <div class="square">B4</div>
+            <div class="square">B5</div>
+            <div class="square">B6</div>
+            <div class="square">B7</div>
+            <div class="square">B8</div>
+        </div>
+        <div class="row">
+            <div class="square">C1</div>
+            <div class="square">C2</div>
+            <div class="square">C3</div>
+            <div class="square">C1</div>
+            <div class="square">C5</div>
+            <div class="square">C6</div>
+            <div class="square">C7</div>
+            <div class="square">C8</div>
+        </div>
+        <div class="row">
+            <div class="square">D1</div>
+            <div class="square">D2</div>
+            <div class="square">D3</div>
+            <div class="square">D4</div>
+            <div class="square">D5</div>
+            <div class="square">D6</div>
+            <div class="square">D7</div>
+            <div class="square">D8</div>
+        </div>
+        <div class="row">
+            <div class="square">E1</div>
+            <div class="square">E2</div>
+            <div class="square">E3</div>
+            <div class="square">E4</div>
+            <div class="square">E5</div>
+            <div class="square">E6</div>
+            <div class="square">E7</div>
+            <div class="square">E8</div>
+        </div>
+        <div class="row">
+            <div class="square">F1</div>
+            <div class="square">F2</div>
+            <div class="square">F3</div>
+            <div class="square">F4</div>
+            <div class="square">F5</div>
+            <div class="square">F6</div>
+            <div class="square">F7</div>
+            <div class="square">F8</div>
+        </div>
+        <div class="row">
+            <div class="square">G1</div>
+            <div class="square">G2</div>
+            <div class="square">G3</div>
+            <div class="square">G4</div>
+            <div class="square">G5</div>
+            <div class="square">G6</div>
+            <div class="square">G7</div>
+            <div class="square">G8</div>
+        </div>
+        <div class="row">
+            <div class="square">H1</div>
+            <div class="square">H2</div>
+            <div class="square">H3</div>
+            <div class="square">H4</div>
+            <div class="square">H5</div>
+            <div class="square">H6</div>
+            <div class="square">H7</div>
+            <div class="square">H8</div>
+        </div>
+    </div>
 
-<input type="text" ng-model="playerName"/>
-<h1>{{playerName}}</h1>
+    <div class="item ship-display">
+        <div>
+            <img src="../img/AllTheShips.png">
+        </div>
 
-<h1>{{tagline}}</h1>
-
-<li ng-repeat="data in messages track by $index">
-    <div>{{data.userName}}</div>
-    <div>{{data.message}}</div>
-
-</li>
-
-<button ng-click="fireWeapon()">Fire Button</button>
-
+        <div style="padding-top: 50%">
+            <button class="firebutton firebutton">Fire</button>
+        </div>
+    </div>
+</div>
 </body>
+
 </html>

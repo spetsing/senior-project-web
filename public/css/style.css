@@ -7,7 +7,6 @@ body {
     font-family: myFirstFont;
     background-color: #4CAF50; /* Green */
     border: none;
-    background-color: #4086AA;
     padding: 20px 40px;
     text-align: center;
     text-decoration: none;
@@ -19,6 +18,45 @@ body {
     cursor: pointer;
     border-radius: 8px;
 }
+.button {
+    background-color: #4086AA;
+    color: black;
+    border: 2px solid #f44336;
+}
+.firebutton
+{
+    font-family: myFirstFont;
+    background-color: #f44336; /* Green */
+    border: none;
+    padding: 20px 80px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 35px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+}
+.button {
+    background-color: #4086AA;
+    color: black;
+    border: 2px solid #f44336;
+}
+
+.firebutton:hover
+{
+    background-color: black;
+    color: red;
+}
+
+.button3:hover {
+    background-color: #f44336;
+    color: white;
+}
+
+
 a.radio-fx span, a.radio-fx {
     display: inline-block;
     margin: 0;
@@ -34,15 +72,6 @@ a.radio-fx span, a.radio-fx {
 }
 #skin_1 .radio-checked {
     background: url("../img/New Piskel.png") no-repeat;
-}
-.button {
-    background-color: #4086AA;
-    color: black;
-    border: 2px solid #f44336;
-}
-.button3:hover {
-    background-color: #f44336;
-    color: white;
 }
 @font-face {
     font-family: myFirstFont;
@@ -240,4 +269,53 @@ div img{ display: inline-block;}
     width: 70%;
     height: 100%;
     padding-left: 5%;
+}
+.page {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.item {}
+
+.grid {
+    flex: 3;
+}
+
+.ship-display {
+    /*background-color: white;*/
+    text-align: center;
+    flex: 1;
+    flex-grow: 2;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: stretch;
+    /*margin: 4px;*/
+    border: 4px solid black;
+    border-radius: 16px;
+    background: linear-gradient(lightblue , darkblue); /* Standard syntax */
+}
+
+.row {
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    background-color: black;
+}
+
+.square {
+    /*background-color: white;*/
+    width: 80px;
+    height: 80px;
+    margin: 4px;
+    text-align: center;
+    font-family: myFirstFont;
+    font-size: 35px;
+    border-radius: 8px;
+    background: linear-gradient(to right, dodgerblue , #00b3ee); /* Standard syntax */
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+.square:hover {
+    background: linear-gradient(to right, red , indianred); /* Standard syntax */
 }
