@@ -22,8 +22,43 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
           });
 
     };
-    function x() {
-        alert("it worked!");
+    $scope.removeUsers = function() {
+
+        var userData={
+            board: "board1",
+            userName:"ss"
+        };
+        $.ajax({
+                type: 'POST',
+                url: 'http://34.195.93.38:3001/removeplayer',
+                data: userData,
+                dataType: 'json',
+                success: function (data) {
+                    this.connectSockets();
+
+
+                }.bind(this),
+                error: function (err) {
+                    //alert(err.responseText);
+                    this.connectSockets();
+                }.bind(this)
+            });
+        userData.board = "board2";
+        $.ajax({
+                type: 'POST',
+                url: 'http://34.195.93.38:3001/removeplayer',
+                data: userData,
+                dataType: 'json',
+                success: function (data) {
+                    this.connectSockets();
+
+
+                }.bind(this),
+                error: function (err) {
+                    //alert(err.responseText);
+                    this.connectSockets();
+                }.bind(this)
+            });
     }
 
 

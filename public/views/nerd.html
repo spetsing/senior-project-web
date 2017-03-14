@@ -1,56 +1,97 @@
-<div class="jumbotron text-center" xmlns="http://www.w3.org/1999/html">
+<div class="text-center" xmlns="http://www.w3.org/1999/html">
 
-	<div class="backdrop">
-		<div class="title">
-			<h1>Project Battleship</h1>
-		</div>
-		<img class="bs" src="../img/ship.gif">
-		<div class="boatpic">
-			<div class="form">
+    <div class="backdrop">
+        <div class="title">
+            <h1>Project Battleship</h1>
+        </div>
+        <div class="sky">
 
-				<div class="tab-content">
-					<div id="signup">
+            <div class="flex-container">
+                <div class="fleet-container">
+                    <div class="flex-item">
+                        <img src="../img/Destroyer.gif" class="flip">
+                    </div>
+                    <div class="flex-item">
+                        <img src="../img/Aircraft%20Carrier.gif" class="flip">
+                    </div>
 
+                    <div class="flex-item-right">
+                        <img src="../img/Battleship.gif" class="flip">
+                    </div>
+                </div>
 
-						<form action="/geeks" method="post">
-								<label>
-									<span class="req"></span>
-								</label>
+                <div class="fleet-container">
+                    <div class="flex-item-left">
+                        <img src="../img/Aircraft%20Carrier.gif">
 
-								<input type="text" required placeholder="Username*" ng-model="userName">
-							<br>
-							<div style="padding-top: 25px">
-								<table id="skin_1" style="background-color: dodgerblue;margin: auto; padding-bottom: 25px" cellpadding="10" cellspacing="10">
-								<tr>
-									<td style="padding-right: 10px">
-										<input class="radio-checked" type="radio" id="radio01" name="radio" checked="checked"/>
-										<label ng-click="toggleSelection()" for="radio01"><span ng-class="{'radio-checked': isBoardOneSelected}"></span>Board 1</label>
-										</td>
-									<td rowspan="2">
-										<a href="/geeks"Geeks ng-click="createUser(userName)" class="button button3" style="vertical-align:middle">Battle</a>
-									</td>
-								</tr>
-									<tr>
-										<td style="padding-right: 10px">
-											<input type="radio" id="radio02" name="radio" />
-											<label ng-click="toggleSelection()" for="radio02"><span ng-class="{'radio-checked': isBoardTwoSelected}"></span>Board 2</label>
-										</td>
-									</tr>
-							</table>
-								</div>
-						</form>
+                    </div>
+                    <div class="flex-item">
+                        <img src="../img/Destroyer.gif">
+                    </div>
 
-					</div>
+                    <div class="flex-item">
+                        <img src="../img/Battleship.gif">
+                    </div>
+                </div>
+            </div>
 
+            <div class="water">
+                <div class="form">
+
+                    <div class="tab-content">
+                        <div id="signup">
 
 
-				</div><!-- tab-content -->
+                            <form action="/geeks" method="post">
+                                <label>
+                                    <span class="req"></span>
+                                </label>
 
-			</div> <!-- /form -->
+                                <input id="userName" type="text" required placeholder="Username*" ng-model="userName">
+                                <br>
+                                <div style="padding-top: 25px">
+                                    <table id="skin_1" style="margin: auto; padding-bottom: 25px" cellpadding="10"
+                                           cellspacing="10">
+                                        <tr>
+                                            <td style="padding-right: 10px">
+                                                <input class="radio-checked" type="radio" id="radio01" name="radio"
+                                                       checked="checked"/>
+                                                <label ng-click="toggleSelection()" for="radio01"><span
+                                                        ng-class="{'radio-checked': isBoardOneSelected}"></span>Board 1</label>
+                                            </td>
+                                            <td rowspan="2">
+                                                <a href="#" Geeks ng-click="onBattle()" class="button button3"
+                                                   style="vertical-align:middle">Battle</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-right: 10px">
+                                                <input type="radio" id="radio02" name="radio"/>
+                                                <label ng-click="toggleSelection()" for="radio02"><span
+                                                        ng-class="{'radio-checked': isBoardTwoSelected}"></span>Board 2</label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </form>
 
-			<p>{{ tagline }}</p>
-		</div>
-	</div>
+                        </div>
+                        <div>
+                            <p id="waitingText"
+                               style="font-family: myFirstFont; font-size: x-large; visibility: hidden  ">
+                                Waiting for other player to join.....
+                            </p>
+                        </div>
 
 
-</div>
+                    </div><!-- tab-content -->
+
+                </div> <!-- /form -->
+
+                <!--<p>{{ tagline }}</p>-->
+            </div>
+            <div>
+            </div>
+
+
+        </div>

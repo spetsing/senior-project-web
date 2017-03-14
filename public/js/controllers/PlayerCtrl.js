@@ -9,7 +9,7 @@
     function PlayerController($rootScope, $scope) {
         $scope.playerName = "";
         var name = "";
-        var socket = io.connect('http://localhost:8080');
+        var socket = io.connect('http://ec2-34-195-93-38.compute-1.amazonaws.com:3001');
         socket.on('connect', function (data) {
             console.log(data);
         });

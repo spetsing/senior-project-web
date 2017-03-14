@@ -9,7 +9,7 @@
     // Create Controller
     function UserController($rootScope, $scope) {
 
-        var socket = window.io('http://localhost:8080');
+      /*  var socket = window.io('http://localhost:8080');
         socket.on('connect', function(data) {
            // socket.emit('join', 'Hello World from client');
 
@@ -39,7 +39,7 @@
 
 
 
-
+*/
 
     }
 

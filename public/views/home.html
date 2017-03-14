@@ -1,14 +1,50 @@
-<div class="jumbotron text-center">
-	<div class="backdrop">
-		<div class="title">
-			<h1>Project Battleship</h1>
-		</div>
-		<img class="bs" src="../img/ship.gif">
-		<div class="boatpic">
-			<form action="/nerds">
-			<a href="/nerds"Nerds ng-click="onClick()" class="button button3" style="vertical-align:middle">Begin Game</a>
-			</form>
-		</div>
+<div class="text-center">
+    <div class="backdrop">
+        <div class="title">
+            <h1>Project Battleship</h1>
+        </div>
+        <div class="sky">
 
-	</div>
+
+            <div class="flex-container">
+                <div class="fleet-container">
+                    <div class="flex-item">
+                        <img src="../img/Destroyer.gif" class="flip">
+                    </div>
+                    <div class="flex-item">
+                        <img src="../img/Aircraft%20Carrier.gif" class="flip">
+                    </div>
+
+                    <div class="flex-item-right">
+                        <img src="../img/Battleship.gif" class="flip">
+                    </div>
+                </div>
+
+                <div class="fleet-container">
+                    <div class="flex-item-left">
+                        <img src="../img/Aircraft%20Carrier.gif">
+
+                    </div>
+                    <div class="flex-item">
+                        <img src="../img/Destroyer.gif">
+                    </div>
+
+                    <div class="flex-item">
+                        <img src="../img/Battleship.gif">
+                    </div>
+                </div>
+            </div>
+            <div class="water">
+                <form action="/nerds" style="margin-top: 5%">
+                    <a href="/nerds" Nerds ng-click="onClick()" class="button button3" style="vertical-align:middle">Begin
+                        Game</a>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div ng-controller="MainController">
+    <button ng-click="removeUsers()">OK</button>
+
 </div>
