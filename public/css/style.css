@@ -319,3 +319,14 @@ div img{ display: inline-block;}
 .square:hover {
     background: linear-gradient(to right, red , indianred); /* Standard syntax */
 }
+
+.shipContainer {
+    display: flex;
+    flex-direction: column!important;
+    flex-grow:0;
+}
+
+.ship{
+    align-self: center;
+    flex: 0 0 auto;
+}
