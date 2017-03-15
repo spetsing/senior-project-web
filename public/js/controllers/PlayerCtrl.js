@@ -7,7 +7,7 @@
     var module = angular.module('PlayerCtrl', []);
 
     function PlayerController($rootScope, $scope) {
-        $scope.playerName = "";
+      /*  $scope.playerName = "";
         var name = "";
         var socket = io.connect('http://ec2-34-195-93-38.compute-1.amazonaws.com:3001');
         socket.on('connect', function (data) {
@@ -36,7 +36,17 @@
             };
 
             socket.emit("fire", x);
+        }*/
+
+        //variable to store cell that is pressed
+        $scope.cell;
+        //called when click on any celll
+        $scope.onClick = function(event) {
+            console.log(event.target.id + " pressed");
+            $scope.cell = event.target.id;
         }
+
+
     }
 
     PlayerController.$inject = [
