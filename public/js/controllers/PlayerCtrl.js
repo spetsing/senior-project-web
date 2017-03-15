@@ -7,8 +7,9 @@
     var module = angular.module('PlayerCtrl', []);
 
     function PlayerController($rootScope, $scope) {
-      /*  $scope.playerName = "";
-        var name = "";
+
+        var name = Math.random().toString().slice(2,11);
+        $scope.playerName = name ;
         var socket = io.connect('http://ec2-34-195-93-38.compute-1.amazonaws.com:3001');
         socket.on('connect', function (data) {
             console.log(data);
@@ -18,13 +19,11 @@
         $scope.messages = []; // For now this is how we will communicate with the other player
 
         socket.on("receive-fire", function (data) {
-            $scope.$apply(function () {
-                console.log("taking fire");
-                console.log(data);
+
                 if (data.userName !== name) {
-                    $scope.messages.push(data);
+                    alert(data.message + " receiving fire");
                 }
-            });
+
         });
 
         $scope.fireWeapon = function () {
@@ -36,7 +35,7 @@
             };
 
             socket.emit("fire", x);
-        }*/
+        };
 
         //variable to store cell that is pressed
         $scope.cell;
@@ -44,6 +43,12 @@
         $scope.onClick = function(event) {
             console.log(event.target.id + " pressed");
             $scope.cell = event.target.id;
+            var x = {
+                userName: this.playerName,
+                message: event.target.id
+            };
+
+            socket.emit("fire", x);
         }
 
 
