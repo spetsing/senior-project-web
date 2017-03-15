@@ -53,7 +53,7 @@
                 }.bind(this),
                 error: function (err) {
                     alert(err.responseText);
-                    this.connectSockets();
+                    //this.connectSockets();
                 }.bind(this)
             });
 
