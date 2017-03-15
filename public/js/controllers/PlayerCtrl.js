@@ -31,7 +31,7 @@
             console.log(this.playerName);
             var x = {
                 userName: this.playerName,
-                message: "has fired their weapon"
+                message: $scope.cell
             };
 
             socket.emit("fire", x);
@@ -43,12 +43,7 @@
         $scope.onClick = function(event) {
             console.log(event.target.id + " pressed");
             $scope.cell = event.target.id;
-            var x = {
-                userName: this.playerName,
-                message: event.target.id
-            };
 
-            socket.emit("fire", x);
         }
 
 
