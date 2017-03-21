@@ -39,4 +39,3 @@ angular.module('GeekCtrl', []).controller('GeekController', function($scope, $ht
 		window.location='/socket-test';
 	}, 3000);*/
 });
-
