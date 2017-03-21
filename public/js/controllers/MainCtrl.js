@@ -51,12 +51,10 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
                 dataType: 'json',
                 success: function (data) {
                     this.connectSockets();
-
-
                 }.bind(this),
                 error: function (err) {
-                    //alert(err.responseText);
-                    this.connectSockets();
+                    alert(err.responseText);
+                  //  this.connectSockets();
                 }.bind(this)
             });
     }
