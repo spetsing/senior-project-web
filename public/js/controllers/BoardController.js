@@ -6,16 +6,16 @@ function BoardController($scope, Services) {
     $scope.userName = Services.getData().userName;
     $scope.board = Services.getData().board;
 
-    var socket = io.connect('http://ec2-34-195-93-38.compute-1.amazonaws.com:3001');
+    var socket = io.connect('http://ec2-34-195-93-38.compute-1.amazonaws.com:3002');
 
 
     //SCOPE FUNCTIONS
     $scope.fireWeapon = function () {
-        name = this.playerName;
         console.log(this.userName);
         var x = {
             userName: this.userName,
-            message: $scope.cell
+            board: this.board,
+            cell: $scope.cell
         };
 
         socket.emit("fire", x);
@@ -30,24 +30,60 @@ function BoardController($scope, Services) {
     }
 
     //SOCKET FUNCTIONS
+    socket.on('connect', function (data) {
+        console.log(data);
+    });
 
+    socket.on("receive-fire", function (data) {
+        if (data.userName !== this.userName) {
+            alert(data.message + " receiving fire");
+        }
 
-        socket.on('connect', function (data) {
-            console.log(data);
-        });
+    }.bind($scope));
 
-        socket.on("receive-fire", function (data) {
-                if (data.userName !== this.userName) {
-                    alert(data.message + " receiving fire");
-                }
+    socket.on("miss", function (data) {
+        if (data.userName !== this.userName) {
+            alert("The Cuck missed you!!");
+            //notify user of a miss? Maybe audio clip
+        } else {
+            //Update the users board who matches username- they missed and should know what spot they fired at. Maybe deactive the button entirely. Change square to white
+        }
+    }.bind($scope));
 
-            }.bind($scope));
+    socket.on("hit", function (data) {
+        if (data.userName !== this.userName) {
+            alert("HIT    " + data.cell);
+            //notify user of hit. Audio clip
+
+        } else {
+            //Update the users board who matches username- they missed and should know what spot they fired at. Maybe deactive the button entirely. Change square to red or X
+        }
+    }.bind($scope));
+
+    socket.on("sunk", function (data) {
+        if (data.userName !== this.userName) {
+            alert("SUNK   " + data.shipName);
+            //notify user of ship that was sunk
+            //data.shipName -- name of ship sunk
+
+        } else {
+            //Update the users board who matches username- they missed and should know what spot they fired at. Maybe deactive the button entirely. Change square to red or X
+            //notify user that ship was sunk and update ship icon on the right
+            //data.shipName -- name of ship sunk
+        }
+    }.bind($scope));
+
+    socket.on("gameover", function (data) {
+        //called when a user has no battleships left
+        alert("GAME OVER");
+        alert(data.userName + " WON!!!");
+    }.bind($scope));
 
 }
 
-    BoardController.$inject = [
+BoardController.$inject = [
         '$scope',
         'Services'
     ];
 
-    module.controller('BoardController', BoardController);
+module.controller('BoardController', BoardController);

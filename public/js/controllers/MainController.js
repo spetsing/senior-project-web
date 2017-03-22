@@ -25,9 +25,9 @@ function MainController($scope, $http, Services, $location) {
             var userName = $("#userName")[0].value;
 
             if ($("#radio01")[0].checked) {
-                board = "board1"
+                board = "1"
             } else {
-                board = "board2"
+                board = "2"
             }
             console.log(board);
 
@@ -41,7 +41,7 @@ function MainController($scope, $http, Services, $location) {
             //make rest call to register player to board
             $.ajax({
                 type: 'POST',
-                url: 'http://34.195.93.38:3001/registerplayer',
+                url: 'http://34.195.93.38:3002/registerplayer',
                 data: userData,
                 dataType: 'json',
                 success: function (data) {
@@ -63,7 +63,7 @@ function MainController($scope, $http, Services, $location) {
             console.log("Connect Sockets Called");
             var location = this.location;
 
-             socket = io.connect('http://ec2-34-195-93-38.compute-1.amazonaws.com:3001');
+             socket = io.connect('http://ec2-34-195-93-38.compute-1.amazonaws.com:3002');
             socket.on('connect', function (data) {
                 console.log(data);
 
@@ -117,16 +117,16 @@ function MainController($scope, $http, Services, $location) {
     $scope.removeUsers = function() {
 
         var userData={
-            board: "board1",
+            board: "1",
             userName:"ss"
         };
         $.ajax({
                 type: 'POST',
-                url: 'http://34.195.93.38:3001/removeplayer',
+                url: 'http://34.195.93.38:3002/removeplayer',
                 data: userData,
                 dataType: 'json',
                 success: function (data) {
-                    this.connectSockets();
+                    //this.connectSockets();
 
 
                 }.bind(this),
@@ -135,14 +135,14 @@ function MainController($scope, $http, Services, $location) {
                     //this.connectSockets();
                 }.bind(this)
             });
-        userData.board = "board2";
+        userData.board = "2";
         $.ajax({
                 type: 'POST',
-                url: 'http://34.195.93.38:3001/removeplayer',
+                url: 'http://34.195.93.38:3002/removeplayer',
                 data: userData,
                 dataType: 'json',
                 success: function (data) {
-                    this.connectSockets();
+                    //this.connectSockets();
                 }.bind(this),
                 error: function (err) {
                     alert(err.responseText);
