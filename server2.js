@@ -99,7 +99,7 @@ io.on('connection', function (client) {
                         data.shipName = documents[0].name;                     
                         io.emit("sunk", data);
                         //Send message to board via sockets
-                        io.emit("led",{board:boardID,cell: data.cell});ccccc
+                        io.emit("led",{board:boardID,cell: data.cell});
                         shipDB.find({board: boardID, health: {$gt:0}}, function(err, doc){
                             console.log("Checking if game is over");
                             console.log(doc);
