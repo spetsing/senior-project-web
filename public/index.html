@@ -18,6 +18,7 @@
     <script src="/libs/angular/angular.min.js"></script>
     <script src="/libs/angular-route/angular-route.min.js"></script>    
     <script src="/socket.io/socket.io.js"></script>
+    <script src="/libs/jquery-1.11.1.min.js"></script>
 
 
     <!-- ANGULAR CUSTOM -->
@@ -25,19 +26,8 @@
     <script src="js/controllers/MainController.js"></script>
     <script src="js/controllers/BoardController.js"></script>
     <script src="js/services/Service.js"></script>
-    <!--<script src="js/controllers/UserCtrl.js"></script>
-    <script src="js/controllers/PlayerCtrl.js"></script>
-    <script src="js/controllers/NerdCtrl.js"></script>
-    <script src="js/services/NerdService.js"></script>
-    <script src="js/controllers/GeekCtrl.js"></script>
-    <script src="js/services/GeekService.js"></script>
-    <script src="js/appRoutes.js"></script>-->
 
     <!--Custom Scripts-->
-
-    <script src="libs/jquery-1.11.1.min.js"></script>
-
-
 
 </head>
 
@@ -45,14 +35,8 @@
 
 
     <div>
-        <!-- ANGULAR DYNAMIC CONTENT -->
-        <div ng-view>
-
-        </div>
-
-        <!--<audio controls autoplay>
-            <source src="Danger%20-%20Danger%20Zone.mp3" type="audio/mpeg">
-        </audio>-->
+        <!-- WHERE ANGULAR VIEW IS INJECTED -->
+        <div ng-view></div>
     </div>
 </body>
 
