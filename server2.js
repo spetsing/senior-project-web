@@ -14,7 +14,9 @@ var db = mongoose.connection;
 var boardDB = mongooseModel.board;
 var shipDB = mongooseModel.ship;
 
-app.use(bodyParser.urlencoded({extended: false}));
+//app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+bodyParser.urlencoded({extended:true});
 app.use(express.static(__dirname + '/public'));
 
 mongoose.connect(mongoURL);
