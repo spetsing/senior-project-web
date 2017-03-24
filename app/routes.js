@@ -112,6 +112,8 @@ module.exports = function (app) {
         console.log("ID: " + board);
         console.log("IP: " + ip);
 
+        console.log(req.body);
+
         boardDB.find({id:board}, function(err, document) {
             if(document.length > 0) {
                 document[0].ip = ip;
