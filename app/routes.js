@@ -104,5 +104,22 @@ module.exports = function (app) {
             }
         })
     })
+    //called when Pi updates IP address
+    app.post("/updateIP", function(req, res) {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        var board = req.body.board;
+        var ip = req.body.ip;
+
+        boardDB.find({id:board}, function(err, document) {
+            if(document.length > 0) {
+                document[0].ip = ip;
+                document[0].save(function(err, doc) {
+                   res.status(200).send(doc);
+                });
+            } else {
+                "Could not find the coresponding board so I could not update the IP. Maybe you fucked up the command?"
+            }
+        });
+    });
 
 };

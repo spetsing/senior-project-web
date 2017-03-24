@@ -75,7 +75,7 @@ io.on('connection', function (client) {
     });    
     
 
-    //called when user presses fire button
+    //called when user presses fire button. Checks for hit or miss
     client.on("fire", function (data) {
         var boardID;
         console.log(data);
