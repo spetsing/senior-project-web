@@ -118,6 +118,7 @@ module.exports = function (app) {
                 });
             } else {
                 "Could not find the coresponding board so I could not update the IP. Maybe you fucked up the command?"
+                res.status(400).send("Could not find a board associated with that ID");
             }
         });
     });
