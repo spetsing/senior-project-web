@@ -109,6 +109,8 @@ module.exports = function (app) {
         res.setHeader('Access-Control-Allow-Origin', '*');
         var board = req.body.board;
         var ip = req.body.ip;
+        console.log("ID: " + board);
+        console.log("IP: " + ip);
 
         boardDB.find({id:board}, function(err, document) {
             if(document.length > 0) {
