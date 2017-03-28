@@ -1,4 +1,24 @@
 var module = angular.module('sampleApp');
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+};
 
 function BoardController($scope, Services) {
 
@@ -27,7 +47,7 @@ function BoardController($scope, Services) {
     $scope.onClick = function (event) {
         console.log(event.target.id + " pressed");
         $scope.cell = event.target.id;
-    }
+    };
 
     //SOCKET FUNCTIONS
     socket.on('connect', function (data) {
@@ -43,31 +63,41 @@ function BoardController($scope, Services) {
 
     socket.on("miss", function (data) {
         if (data.userName !== this.userName) {
-            alert("The Cuck missed you!!");
+            document.getElementById("msgTxt").innerHTML = this.userName + " missed";
+            // alert(this.userName + " missed you!!");
+            modal.style.display = "block";
             //notify user of a miss? Maybe audio clip
         } else {
+            document.getElementById(data.cell).className = "missSquare";
             //Update the users board who matches username- they missed and should know what spot they fired at. Maybe deactive the button entirely. Change square to white
         }
     }.bind($scope));
 
     socket.on("hit", function (data) {
         if (data.userName !== this.userName) {
-            alert("HIT    " + data.cell);
+            // alert("HIT    " + data.cell);
+            document.getElementById("msgTxt").innerHTML = this.userName + " hit " + data.cell;
+            modal.style.display = "block";
             //notify user of hit. Audio clip
 
         } else {
-            //Update the users board who matches username- they missed and should know what spot they fired at. Maybe deactive the button entirely. Change square to red or X
+            //Update the users board who matches username- they hit and should know what spot they fired at. Maybe deactive the button entirely. Change square to red or X
+            document.getElementById(data.cell).className = "hitSquare";
         }
     }.bind($scope));
 
     socket.on("sunk", function (data) {
         if (data.userName !== this.userName) {
-            alert("SUNK   " + data.shipName);
+            document.getElementById("msgTxt").innerHTML = this.userName + " sunk " + data.shipName;
+            // alert("SUNK   " + data.shipName);
+            modal.style.display = "block";
             //notify user of ship that was sunk
             //data.shipName -- name of ship sunk
 
         } else {
-            //Update the users board who matches username- they missed and should know what spot they fired at. Maybe deactive the button entirely. Change square to red or X
+            document.getElementById("msgTxt").innerHTML = this.userName + " sunk " + data.shipName;
+            // alert("SUNK   " + data.shipName);
+            modal.style.display = "block";
             //notify user that ship was sunk and update ship icon on the right
             //data.shipName -- name of ship sunk
         }
@@ -75,8 +105,10 @@ function BoardController($scope, Services) {
 
     socket.on("gameover", function (data) {
         //called when a user has no battleships left
-        alert("GAME OVER");
-        alert(data.userName + " WON!!!");
+        // alert("GAME OVER");
+        // alert(data.userName + " WON!!!");
+        document.getElementById("msgTxt").innerHTML = "Game Over! " + data.userName + " wins!";
+        modal.style.display = "block";
     }.bind($scope));
 
 }

@@ -64,6 +64,7 @@ function MainController($scope, $http, Services, $location) {
             var location = this.location;
 
              socket = io.connect('http://ec2-34-195-93-38.compute-1.amazonaws.com:3002');
+
             socket.on('connect', function (data) {
                 console.log(data);
 
@@ -75,42 +76,6 @@ function MainController($scope, $http, Services, $location) {
                 this.$apply();
             }.bind(this));
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     //removes all players from the boards. REMOVE BEFORE LIVE
@@ -151,6 +116,7 @@ function MainController($scope, $http, Services, $location) {
             });
     }
 }
+
 
     MainController.$inject = [
 		'$scope',
