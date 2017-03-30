@@ -328,6 +328,7 @@ div img{ display: inline-block;}
     background: white; /* Standard syntax */
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
+    pointer-events: none;
 }
 .hitSquare {
     /*background-color: white;*/
@@ -341,6 +342,7 @@ div img{ display: inline-block;}
     background: #f44336; /* Standard syntax */
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
+    pointer-events: none;
 }
 
 

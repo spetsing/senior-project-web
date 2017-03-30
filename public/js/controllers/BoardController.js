@@ -15,8 +15,15 @@ function BoardController($scope, Services) {
             board: this.board,
             cell: $scope.cell
         };
+        if($scope.cell === "") {
+            document.getElementById("msgTxt").innerHTML = "You have to select a cell before you can attack!";
+            // alert(this.userName + " missed you!!");
+            modal.style.display = "block";
+        } else{
+            socket.emit("fire", x);
+            document.getElementById("fireButton").disabled = true;
+        }
 
-        socket.emit("fire", x);
     };
 
     //variable to store cell that is pressed
@@ -41,12 +48,13 @@ function BoardController($scope, Services) {
 
     socket.on("miss", function (data) {
         if (data.userName !== this.userName) {
-            document.getElementById("msgTxt").innerHTML = this.userName + " missed";
-            // alert(this.userName + " missed you!!");
+            document.getElementById("msgTxt").innerHTML = data.userName + " missed";
             modal.style.display = "block";
+            document.getElementById("fireButton").disabled = false;
             //notify user of a miss? Maybe audio clip
         } else {
             document.getElementById(data.cell).className = "missSquare";
+            $scope.cell = "";
             //Update the users board who matches username- they missed and should know what spot they fired at. Maybe deactive the button entirely. Change square to white
         }
     }.bind($scope));
@@ -54,27 +62,31 @@ function BoardController($scope, Services) {
     socket.on("hit", function (data) {
         if (data.userName !== this.userName) {
             // alert("HIT    " + data.cell);
-            document.getElementById("msgTxt").innerHTML = this.userName + " hit " + data.cell;
+            document.getElementById("msgTxt").innerHTML = data.userName + " hit " + data.cell;
             modal.style.display = "block";
+            document.getElementById("fireButton").disabled = false;
             //notify user of hit. Audio clip
 
         } else {
             //Update the users board who matches username- they hit and should know what spot they fired at. Maybe deactive the button entirely. Change square to red or X
             document.getElementById(data.cell).className = "hitSquare";
+            $scope.cell = "";
         }
     }.bind($scope));
 
     socket.on("sunk", function (data) {
         if (data.userName !== this.userName) {
-            document.getElementById("msgTxt").innerHTML = this.userName + " sunk " + data.shipName;
+            document.getElementById("msgTxt").innerHTML = data.userName + " sunk " + data.shipName;
             // alert("SUNK   " + data.shipName);
             modal.style.display = "block";
+            document.getElementById("fireButton").disabled = false;
             //notify user of ship that was sunk
             //data.shipName -- name of ship sunk
 
         } else {
-            document.getElementById("msgTxt").innerHTML = this.userName + " sunk " + data.shipName;
-            // alert("SUNK   " + data.shipName);
+            document.getElementById(data.cell).className = "hitSquare";
+            $scope.cell="";
+            document.getElementById("msgTxt").innerHTML = "You sunk " + data.userName + "'s " + data.shipName;
             modal.style.display = "block";
             //notify user that ship was sunk and update ship icon on the right
             //data.shipName -- name of ship sunk
