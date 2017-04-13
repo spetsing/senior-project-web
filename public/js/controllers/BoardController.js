@@ -4,7 +4,7 @@ function BoardController($scope, Services) {
     $scope.userName = Services.getData().userName;
     $scope.board = Services.getData().board;
 
-    var socket = io.connect('http://ec2-34-195-93-38.compute-1.amazonaws.com:3002');
+    var socket = io.connect('http://34.195.93.38:3002');
 
 
     //SCOPE FUNCTIONS
