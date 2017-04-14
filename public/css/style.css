@@ -45,11 +45,11 @@ body {
     border: 2px solid #f44336;
 }
 
-.firebutton:hover
-{
-    background-color: black;
-    color: red;
-}
+/*.firebutton:hover*/
+/*{*/
+    /*background-color: black;*/
+    /*color: red;*/
+/*}*/
 
 .button3:hover {
     background-color: #f44336;
