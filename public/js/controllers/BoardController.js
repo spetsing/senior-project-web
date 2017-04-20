@@ -3,67 +3,25 @@ function BoardController($scope, Services) {
     $scope.services = Services;
     $scope.userName = Services.getData().userName;
     $scope.board = Services.getData().board;
-    $scope.game = 0;
+
     var socket = io.connect('http://ec2-34-195-93-38.compute-1.amazonaws.com:3002');
-    //paytons stuff
 
-    var module = angular.module('sampleApp');
-    // Get the modal
-    var modal = document.getElementById('myModal');
-
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    var fireBtn = document.getElementById("fireButton");
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function () {
-        modal.style.display = "none";
-    };
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    };
-
-    document.getElementById("msgTxt").innerHTML = "Instructions: \n1) Place  your  ships  on  the  board  either  vertically  or  horizontally \n2)" +
-        "Sink  the  enemy  ships  by  selecting  a  square  and  hitting  the  FIRE  button,  first  player  to  sink  his/her  opponent's  ship  is  the  victor \n3)Click  the  ready " +
-        "button  when  ready";
-    modal.style.display = "block";
 
     //SCOPE FUNCTIONS
     $scope.fireWeapon = function () {
         console.log(this.userName);
-
-        if (this.game == 0)
-        {
-            this.game = 1;
-            fireBtn.innerHTML = "Fire";
-            //get ship locations
-        }
-        if (this.game == 1)
-        {
         var x = {
             userName: this.userName,
             board: this.board,
             cell: $scope.cell
         };
         if($scope.cell === "") {
-
+            document.getElementById("msgTxt").innerHTML = "You have to select a cell before you can attack!";
+            // alert(this.userName + " missed you!!");
+            modal.style.display = "block";
         } else{
             socket.emit("fire", x);
             document.getElementById("fireButton").disabled = true;
-            fireBtn.className = "firebutton";
-        }}
-        if (this.game == 2)
-        {
-            this.game = 0;
-            fireBtn.innerHTML = "New game";
-            //erase ships from DB, clear board, clear players
         }
 
     };
@@ -78,7 +36,6 @@ function BoardController($scope, Services) {
 
     //SOCKET FUNCTIONS
     socket.on('connect', function (data) {
-
         console.log(data);
     });
 
@@ -91,7 +48,7 @@ function BoardController($scope, Services) {
 
     socket.on("miss", function (data) {
         if (data.userName !== this.userName) {
-            document.getElementById("msgTxt").innerHTML = data.userName + "_missed";
+            document.getElementById("msgTxt").innerHTML = data.userName + " missed";
             modal.style.display = "block";
             document.getElementById("fireButton").disabled = false;
             //notify user of a miss? Maybe audio clip
@@ -105,10 +62,9 @@ function BoardController($scope, Services) {
     socket.on("hit", function (data) {
         if (data.userName !== this.userName) {
             // alert("HIT    " + data.cell);
-            document.getElementById("msgTxt").innerHTML = data.userName + "_hit_" + data.cell;
+            document.getElementById("msgTxt").innerHTML = data.userName + " hit " + data.cell;
             modal.style.display = "block";
             document.getElementById("fireButton").disabled = false;
-
             //notify user of hit. Audio clip
 
         } else {
@@ -120,7 +76,7 @@ function BoardController($scope, Services) {
 
     socket.on("sunk", function (data) {
         if (data.userName !== this.userName) {
-            document.getElementById("msgTxt").innerHTML = data.userName + "_sunk_" + data.shipName;
+            document.getElementById("msgTxt").innerHTML = data.userName + " sunk " + data.shipName;
             // alert("SUNK   " + data.shipName);
             modal.style.display = "block";
             document.getElementById("fireButton").disabled = false;
@@ -138,14 +94,36 @@ function BoardController($scope, Services) {
     }.bind($scope));
 
     socket.on("gameover", function (data) {
-        $scope.game = 2;
-        document.getElementById("msgTxt").innerHTML = "Game Over!_" + data.userName + "_wins!";
+        //called when a user has no battleships left
+        // alert("GAME OVER");
+        // alert(data.userName + " WON!!!");
+        document.getElementById("msgTxt").innerHTML = "Game Over! " + data.userName + " wins!";
         modal.style.display = "block";
-        document.getElementById("fireButton").disabled = false;
-
     }.bind($scope));
 
+    //paytons stuff
 
+    var module = angular.module('sampleApp');
+    // Get the modal
+    var modal = document.getElementById('myModal');
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    };
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    };
 
 }
 
