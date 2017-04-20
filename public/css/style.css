@@ -45,11 +45,11 @@ body {
     border: 2px solid #f44336;
 }
 
-.firebutton:hover
-{
-    background-color: black;
-    color: red;
-}
+/*.firebutton:hover*/
+/*{*/
+    /*background-color: black;*/
+    /*color: red;*/
+/*}*/
 
 .button3:hover {
     background-color: #f44336;
@@ -76,6 +76,11 @@ a.radio-fx span, a.radio-fx {
 @font-face {
     font-family: myFirstFont;
     src: url(ARCADECLASSIC.TTF);
+}
+
+@font-face {
+    font-family: msgFont;
+    src: url(prstart.ttf);
 }
 h1
 {
@@ -363,7 +368,7 @@ div img{ display: inline-block;}
 }
 
 .modal-content {
-    font-family: myFirstFont;
+    font-family: msgFont;
     font-size: 30px;
     background-color: #fefefe;
     margin: auto;
