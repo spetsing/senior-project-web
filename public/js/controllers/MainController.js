@@ -8,6 +8,24 @@ function MainController($scope, $http, Services, $location) {
     var socket;
     //paytons stuff
 
+
+    socket = io.connect('http://34.195.93.38:3002');
+
+        socket.on('connect', function (data) {
+            console.log(data);
+            console.log("Sockets Connected");
+
+        });
+
+    $scope.sendHit = function() {
+        var x = {
+            board: $("#board").val(),
+            cell: $("#cell").val()
+        }
+
+        socket.emit("sendHit", x);
+    }
+
     var module = angular.module('sampleApp');
     // Get the modal
     var modal = document.getElementById('myModal');
