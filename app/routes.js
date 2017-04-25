@@ -85,15 +85,13 @@ module.exports = function (app) {
                 for(var x = 0; x < documents.length; x++) {
                     console.log(documents[x]);
                     switch(documents[x].name){
-                        case "Aircraft Carrier": documents[x].health = 5;
+                        case "Carrier": documents[x].health = 5;
                             break;
-                        case "Destroyer": documents[x].health = 2;
+                        case "Destroyer": documents[x].health = 1;
                             break;
-                        case "Submarine": documents[x].health = 3;
+                        case "Cruiser": documents[x].health = 2;
                             break;
-                        case "Cruiser": documents[x].health = 3;
-                            break;
-                        case "Battleship": documents[x].health = 4;
+                        case "Battleship": documents[x].health = 3;
                             break;
                     }
                     documents[x].save();

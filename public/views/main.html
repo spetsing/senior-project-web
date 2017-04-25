@@ -72,6 +72,19 @@
                 </p>
             </div>
             <button ng-click="removeUsers()" >Remove Users</button>
+            <input id="board" type="text" placeholder="Board">
+            <input id="cell" type="text" placeholder="Cell">
+            <button ng-click="sendHit()">Send Hit</button>
+            <button ng-click="resetLED()">Turn off LED</button>
+        </div>
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p id="msgTxt"></p>
+            </div>
+            <script src="../js/window.js"></script>
         </div>
     </div>
 </div>
