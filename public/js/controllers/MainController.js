@@ -26,6 +26,10 @@ function MainController($scope, $http, Services, $location) {
         socket.emit("sendHit", x);
     }
 
+    $scope.resetLED = function() {
+        socket.emit("turnOffLED","");
+    }
+
     var module = angular.module('sampleApp');
     // Get the modal
     var modal = document.getElementById('myModal');
