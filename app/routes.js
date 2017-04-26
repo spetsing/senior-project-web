@@ -37,6 +37,7 @@ module.exports = function (app) {
                 if (documents[0].userName === "") {
                     console.log("No player is assingned to the board yet. Assigning " + userName + " to " + board);
                     documents[0].userName = userName;
+                    documents[0].ready = false;
                     documents[0].save(function (err, doc) {
                         console.log(doc);
                         res.status(200).json("You have been assigned to " + board);
