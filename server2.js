@@ -95,6 +95,8 @@ app.post("/hit", function (req, res) {
 io.on('connection', function (client) {
     console.log("player connected");
     io.emit("join", "You have established a socket conneciton to the server");
+     console.log("Turning off LEDS");
+        io.emit("reset", "cuck");
 
 
     console.log("testing to see if both players have connected");
