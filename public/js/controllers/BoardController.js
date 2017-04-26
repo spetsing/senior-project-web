@@ -4,7 +4,7 @@ function BoardController($scope, Services) {
     $scope.userName = Services.getData().userName;
     $scope.board = Services.getData().board;
     $scope.game = 0;
-    var socket = io.connect('http://ec2-34-195-93-38.compute-1.amazonaws.com:3002');
+    var socket = io.connect('http://34.195.93.38:3002');
     //paytons stuff
 
     var module = angular.module('sampleApp');
@@ -36,37 +36,6 @@ function BoardController($scope, Services) {
     modal.style.display = "block";
 
     //SCOPE FUNCTIONS
-    $scope.fireWeapon = function () {
-        console.log(this.userName);
-
-        if (this.game == 0)
-        {
-            this.game = 1;
-            fireBtn.innerHTML = "Fire";
-            //get ship locations
-        }
-        if (this.game == 1)
-        {
-        var x = {
-            userName: this.userName,
-            board: this.board,
-            cell: $scope.cell
-        };
-        if($scope.cell === "") {
-
-        } else{
-            socket.emit("fire", x);
-            document.getElementById("fireButton").disabled = true;
-            fireBtn.className = "firebutton";
-        }}
-        if (this.game == 2)
-        {
-            this.game = 0;
-            fireBtn.innerHTML = "New game";
-            //erase ships from DB, clear board, clear players
-        }
-
-    };
 
     //variable to store cell that is pressed
     $scope.cell;
@@ -82,12 +51,47 @@ function BoardController($scope, Services) {
         console.log(data);
     });
 
-    socket.on("receive-fire", function (data) {
-        if (data.userName !== this.userName) {
-            alert(data.message + " receiving fire");
+    socket.on("startGame", function (data) {
+        this.game = 1;
+        fireBtn.innerHTML = "Fire";
+        if (data != this.board) {
+            document.getElementById("fireButton").disabled = true;
         }
 
-    }.bind($scope));
+    }.bind($scope))
+
+    $scope.fireWeapon = function () {
+        console.log(this.userName);
+
+        if (this.game == 0) {
+            //send ready to server
+            socket.emit("ready", {
+                board: this.board
+            });
+        }
+        if (this.game == 1) {
+            var x = {
+                userName: this.userName,
+                board: this.board,
+                cell: $scope.cell
+            };
+            if ($scope.cell === "") {
+
+            } else {
+                socket.emit("fire", x);
+                document.getElementById("fireButton").disabled = true;
+                fireBtn.className = "firebutton";
+            }
+        }
+        if (this.game == 2) {
+            this.game = 0;
+            //erase ships from DB, clear board, clear players
+            socket.emit("replay", this.board);
+            fireBtn.innerHTML = "Ready";
+            this.resetBoard();
+        }
+
+    };
 
     socket.on("miss", function (data) {
         if (data.userName !== this.userName) {
@@ -118,27 +122,10 @@ function BoardController($scope, Services) {
         }
     }.bind($scope));
 
-    socket.on("sunk", function (data) {
-        if (data.userName !== this.userName) {
-            document.getElementById("msgTxt").innerHTML = data.userName + "_sunk_" + data.shipName;
-            // alert("SUNK   " + data.shipName);
-            modal.style.display = "block";
-            document.getElementById("fireButton").disabled = false;
-            //notify user of ship that was sunk
-            //data.shipName -- name of ship sunk
-
-        } else {
-            document.getElementById(data.cell).className = "hitSquare";
-            $scope.cell="";
-            document.getElementById("msgTxt").innerHTML = "You sunk " + data.userName + "'s " + data.shipName;
-            modal.style.display = "block";
-            //notify user that ship was sunk and update ship icon on the right
-            //data.shipName -- name of ship sunk
-        }
-    }.bind($scope));
 
     socket.on("gameover", function (data) {
         $scope.game = 2;
+        fireBtn.innerHTML = "New game";
         document.getElementById("msgTxt").innerHTML = "Game Over!_" + data.userName + "_wins!";
         modal.style.display = "block";
         document.getElementById("fireButton").disabled = false;
@@ -146,6 +133,24 @@ function BoardController($scope, Services) {
     }.bind($scope));
 
 
+
+    $scope.resetBoard = function() {
+       /* for(var x = 0; x < 8; x++)
+            for(var y = 0; y < 8; x++) {
+                var id = x + convertNumberToLetter(y);
+                document.getElementById(id).className = "square";
+            }*/
+        var hits = document.querySelectorAll(".hitSquare");
+        var miss = document.querySelectorAll(".missSquare");
+
+        for(var x = 0; x < hits.length; x++) {
+            hits[x].className = "square";
+        }
+         for(var x = 0; x < miss.length; x++) {
+            miss[x].className = "square";
+        }
+
+    }
 
 }
 
