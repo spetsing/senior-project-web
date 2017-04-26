@@ -207,7 +207,7 @@ io.on('connection', function (client) {
             for (var x = 0; x < document.length; x++) {
                 document[x].ready = false;
                 document[x].save();
-                consoel.log("Board " + x + " ready status has been reset");
+                console.log("Board " + x + " ready status has been reset");
             }
         })
     })
