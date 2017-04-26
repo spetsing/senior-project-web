@@ -88,6 +88,7 @@ function BoardController($scope, Services) {
             //erase ships from DB, clear board, clear players
             socket.emit("replay", "");
             fireBtn.innerHTML = "Ready";
+            this.resetBoard();
         }
 
     };
@@ -131,7 +132,36 @@ function BoardController($scope, Services) {
 
     }.bind($scope));
 
+    function convertNumberToLetter(number) {
+        switch(number) {
+            case 0: return "a";break;
+            case 1: return "b";break;
+            case 2: return "c";break;
+            case 3: return "d";break;
+            case 4: return "e";break;
+            case 5: return "f";break;
+            case 6: return "g";break;
+            case 7: return "h";break;
+                     }
+    }
 
+    $scope.resetBoard = function() {
+       /* for(var x = 0; x < 8; x++)
+            for(var y = 0; y < 8; x++) {
+                var id = x + convertNumberToLetter(y);
+                document.getElementById(id).className = "square";
+            }*/
+        var hits = document.querySelectorAll(".hitSquare")[0].class;
+        var miss = document.querySelectorAll(".missSquare")[0].class
+
+        for(var x = 0; x < hits.length; x++) {
+            hits[0].className = "square";
+        }
+         for(var x = 0; x < miss.length; x++) {
+            miss[0].className = "square";
+        }
+
+    }
 
 }
 
