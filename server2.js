@@ -50,11 +50,27 @@ app.get("/getShip", function (req, res, next) {
     /*  var board = req.body.board;
 
 
+
       shipDB.find({
           board: board
       }, function (err, documents) {
           res.send(documents);
       })*/
+
+    var board1 = new boardDB({
+        userName:"",
+        id:"1",
+        ready: false
+    })
+    board1.save();
+
+    var board2 = new boardDB({
+        userName:"",
+        id:"2",
+        ready: false
+    })
+
+    board2.save();
     res.json("Saved Ships");
 })
 
@@ -155,7 +171,7 @@ io.on('connection', function (client) {
         boardDB.find({id: board}, function(err, documents) {
             if(err) console.error(err);
             if(documents.length > 0) {
-                documents[0].readyToPlay = true;
+                documents[0].ready = true;
                 documents[0].markModified('readyToPlay');
                 documents[0].save();
                 console.log("Board " + board + " status updated to ready");
@@ -163,7 +179,7 @@ io.on('connection', function (client) {
                 console.log("Could not find board to update ready status");
             }
 
-        boardDB.find({readyToPlay: false},function(err, documents) {
+        boardDB.find({ready: false},function(err, documents) {
             if(err) console.error(err);
             console.log(documents);
             if(documents.length === 0) {
