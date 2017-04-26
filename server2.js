@@ -144,7 +144,7 @@ io.on('connection', function (client) {
         })
     })
     //called when user presses ready button at beginning of game
-    client.on("ready", function (data) {
+     client.on("ready", function (data) {
         console.log("called ready");
 
         var board = data.board;
@@ -152,26 +152,24 @@ io.on('connection', function (client) {
         io.emit("ships", data);
 
         //update board is ready
-        boardDB.find({
-            id: board
-        }, function (err, documents) {
-            if (err) console.error(err);
-            if (documents.length > 0) {
+        boardDB.find({id: board}, function(err, documents) {
+            if(err) console.error(err);
+            if(documents.length > 0) {
                 documents[0].readyToPlay = true;
                 documents[0].save();
+                console.log("Board " + board + " status updated to ready");
             } else {
                 console.log("Could not find board to update ready status");
             }
 
-            boardDB.find({
-                readyToPlay: false
-            }, function (err, documents) {
-                if (err) console.error(err);
-                if (documents.length === 0) {
-                    //both users are ready. Start game
-                    io.emit("startGame", "1");
-                }
-            })
+        boardDB.find({readyToPlay: false},function(err, documents) {
+            if(err) console.error(err);
+            if(documents.length === 0) {
+                //both users are ready. Start game
+                console.log("both players are ready, start game");
+                io.emit("startGame","1");
+            }
+        })
 
         })
     })
