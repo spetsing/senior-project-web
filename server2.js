@@ -199,16 +199,19 @@ io.on('connection', function (client) {
         console.log("Turning off LEDS");
         io.emit("reset", "cuck");
         //remove ships from db
-        shipCordDB.remove({}, function (err, documents) {
+        shipCordDB.remove({board: data}, function (err, documents) {
             console.log("All ships have been removed from DB");
         })
 
-        boardDB.find({}, function (err, document) {
-            for (var x = 0; x < document.length; x++) {
+        boardDB.find({id: data}, function (err, document) {
+            document[0].ready = false;
+            document[0].save();
+            console.log("Board " + data + " ready status has been reset");
+            /*for (var x = 0; x < document.length; x++) {
                 document[x].ready = false;
                 document[x].save();
                 console.log("Board " + x + " ready status has been reset");
-            }
+            }*/
         })
     })
 

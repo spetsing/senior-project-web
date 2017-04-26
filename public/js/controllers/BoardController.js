@@ -86,7 +86,7 @@ function BoardController($scope, Services) {
         if (this.game == 2) {
             this.game = 0;
             //erase ships from DB, clear board, clear players
-            socket.emit("replay", "");
+            socket.emit("replay", this.board);
             fireBtn.innerHTML = "Ready";
             this.resetBoard();
         }
@@ -144,10 +144,10 @@ function BoardController($scope, Services) {
         var miss = document.querySelectorAll(".missSquare");
 
         for(var x = 0; x < hits.length; x++) {
-            hits[0].className = "square";
+            hits[x].className = "square";
         }
          for(var x = 0; x < miss.length; x++) {
-            miss[0].className = "square";
+            miss[x].className = "square";
         }
 
     }
