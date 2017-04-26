@@ -47,14 +47,14 @@ app.get('/', function (req, res, next) {
 
 // returns a ship with matching position
 app.get("/getShip", function (req, res, next) {
-  /*  var board = req.body.board;
+    /*  var board = req.body.board;
 
 
-    shipDB.find({
-        board: board
-    }, function (err, documents) {
-        res.send(documents);
-    })*/
+      shipDB.find({
+          board: board
+      }, function (err, documents) {
+          res.send(documents);
+      })*/
     res.json("Saved Ships");
 })
 
@@ -89,11 +89,14 @@ io.on('connection', function (client) {
         if (documents.length === 0) {
             console.log("Both players have connected! Start the game!")
             io.emit("gameReady", "data");
-            //remove user from board
-            for(var x=0;x<documents.length;x++) {
-                documents[x].userName = "";
-                documents[x].save();
-            }
+
+            boardDB.find({}, function (err, documents) {
+                //remove user from board
+                for (var x = 0; x < documents.length; x++) {
+                    documents[x].userName = "";
+                    documents[x].save();
+                }
+            })
         }
     })
 
@@ -149,37 +152,41 @@ io.on('connection', function (client) {
         io.emit("ships", data);
 
         //update board is ready
-        boardDB.find({id: board}, function(err, documents) {
-            if(err) console.error(err);
-            if(documents.length > 0) {
+        boardDB.find({
+            id: board
+        }, function (err, documents) {
+            if (err) console.error(err);
+            if (documents.length > 0) {
                 documents[0].readyToPlay = true;
                 documents[0].save();
             } else {
                 console.log("Could not find board to update ready status");
             }
 
-        boardDB.find({readyToPlay: false},function(err, documents) {
-            if(err) console.error(err);
-            if(documents.length === 0) {
-                //both users are ready. Start game
-                io.emit("startGame","1");
-            }
-        })
+            boardDB.find({
+                readyToPlay: false
+            }, function (err, documents) {
+                if (err) console.error(err);
+                if (documents.length === 0) {
+                    //both users are ready. Start game
+                    io.emit("startGame", "1");
+                }
+            })
 
         })
     })
 
     //called when user restarts game
-    client.on("replay", function(data) {
+    client.on("replay", function (data) {
         console.log("Turning off LEDS");
         io.emit("reset", "cuck");
         //remove ships from db
-        shipCordDB.remove({},function(err, documents) {
+        shipCordDB.remove({}, function (err, documents) {
             console.log("All ships have been removed from DB");
         })
-        
-        boardDB.find({},function(err, document) {
-            for(var x = 0; x < document.length; x++) {
+
+        boardDB.find({}, function (err, document) {
+            for (var x = 0; x < document.length; x++) {
                 document[x].ready = false;
                 document[x].save();
                 consoel.log("Board " + x + " ready status has been reset");
