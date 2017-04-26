@@ -118,7 +118,10 @@ function MainController($scope, $http, Services, $location) {
         });
 
         socket.on("gameReady", function (data) {
-            $.ajax({
+           console.log("Game Ready Routing to board");
+                    this.location.path("/board");
+                    this.$apply();
+            /* $.ajax({
                 type: 'GET',
                 url: 'http://34.195.93.38:3002/resetHealth',
                 success: function (data) {
@@ -133,7 +136,7 @@ function MainController($scope, $http, Services, $location) {
                     modal.style.display = "block";
                     // alert(err.responseText);
                 }.bind(this)
-            });
+            });*/
         }.bind(this));
     }
 
