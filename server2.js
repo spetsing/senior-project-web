@@ -198,10 +198,6 @@ io.on('connection', function (client) {
     client.on("replay", function (data) {
         console.log("Turning off LEDS");
         io.emit("reset", "cuck");
-        //remove ships from db
-        shipCordDB.remove({board: data}, function (err, documents) {
-            console.log("All ships have been removed from DB");
-        })
 
         boardDB.find({id: data}, function (err, document) {
             document[0].ready = false;
@@ -221,13 +217,18 @@ io.on('connection', function (client) {
 
         //create ship objects and add them to DB
 
-        var ship = new shipCordDB({
+      /*  var ship = new shipCordDB({
             board: data.board,
             coordinates: data.coords,
             health: data.coords.length
+        })*/
+        shipCordDB.find({board:data.board}, function(err, documents) {
+            documents[0].coordinates = data.coords.length;
+            documents[0].health = data.coords.length;
+            documents[0].save();
         })
-        ship.save();
-        console.log("Ship object saved to db");
+
+        console.log("Board " + data.board + " has been updated");
 
     })
 
