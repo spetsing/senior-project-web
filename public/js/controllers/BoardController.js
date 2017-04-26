@@ -58,7 +58,7 @@ function BoardController($scope, Services) {
             document.getElementById("fireButton").disabled = true;
         }
 
-    })
+    }.bind($scope)))
 
     $scope.fireWeapon = function () {
         console.log(this.userName);
