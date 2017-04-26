@@ -377,6 +377,16 @@ div img{ display: inline-block;}
     width: 80%;
     text-align: center;
 }
+.modal-content-bottom {
+    font-family: msgFont;
+    font-size: 20px;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+   // border: 1px solid black;
+    width: 100%;
+    text-align: center;
+}
 
 .close {
     color: Black;

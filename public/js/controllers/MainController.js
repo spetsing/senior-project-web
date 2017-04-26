@@ -52,6 +52,25 @@ function MainController($scope, $http, Services, $location) {
             modal.style.display = "none";
         }
     };
+
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    };
+    var audio = new Audio("../sounds/player1.wav");
+    function playerOne(){
+        var audio = document.getElementById("radio1");
+        audio.play();
+    }
+    function playerTwo(){
+        var audio = document.getElementById("radio2");
+        audio.play();
+    }
+
+
     //Hide elements as soon as page is rendered
     $(document).ready(function () {
         $("#waitingText").hide();

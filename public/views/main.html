@@ -22,7 +22,7 @@
                         <img src="../img/Aircraft%20Carrier.gif">
                     </div>
                     <div class="flex-item">
-                        <img src="../img/Destroyer.gif">
+                        <img src="../img/DestroyerFire.gif">
                     </div>
 
                     <div class="flex-item">
@@ -31,8 +31,9 @@
                 </div>
             </div>
             <div id="beginGame" class="water">
-                <form style="margin-top: 5%">
-                    <a ng-click="onClick()" class="button button3" style="vertical-align:middle">Begin
+
+                <form style="margin-top: 12%">
+                    <a ng-click="onClick()" onclick="BeginSound()" class="button button3" style="vertical-align:middle">Begin
                         Game</a>
                 </form>
             </div>
@@ -42,22 +43,22 @@
                         <span class="req"></span>
                     </label>
 
-                    <input id="userName" type="text" required placeholder="Username*" ng-model="userName">
+                    <input style="margin-top: 7%; font-family: msgFont;" id="userName" type="text" required placeholder="Username*" ng-model="userName">
                     <br>
                     <div style="padding-top: 25px">
                         <table id="skin_1" style="margin: auto; padding-bottom: 25px" cellpadding="10" cellspacing="10">
                             <tr>
                                 <td style="padding-right: 10px">
-                                    <input class="radio-checked" type="radio" id="radio01" name="radio" checked="checked" />
-                                    <label ng-click="toggleSelection()" for="radio01"><span ng-class="{'radio-checked': isBoardOneSelected}"></span>Board 1</label>
+                                    <input class="radio-checked" type="radio" id="radio01" name="radio" checked="checked" onclick="PlayerPick()" />
+                                    <label style="font-family: msgFont;" ng-click="toggleSelection()" for="radio01"><span ng-class="{'radio-checked': isBoardOneSelected}"></span>Board 1</label>
                                 </td>
                                 <td rowspan="2">
-                                    <a ng-click="onBattle()" class="button button3" style="vertical-align:middle">Battle</a>
+                                    <a ng-click="onBattle()" class="button button3" style="vertical align:middle" onclick="BeginSound()">Battle</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td style="padding-right: 10px">
-                                    <input type="radio" id="radio02" name="radio" />
+                                    <input type="radio" id="radio02" name="radio" onclick="PlayerPick()" />
                                     <label ng-click="toggleSelection()" for="radio02"><span ng-class="{'radio-checked': isBoardTwoSelected}"></span>Board 2</label>
                                 </td>
                             </tr>

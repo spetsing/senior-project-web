@@ -6,6 +6,8 @@ function BoardController($scope, Services) {
     $scope.game = 0;
     var socket = io.connect('http://34.195.93.38:3002');
     //paytons stuff
+    var audio = document.getElementById("beginGame");
+    audio.play();
 
     var module = angular.module('sampleApp');
     // Get the modal
@@ -29,6 +31,10 @@ function BoardController($scope, Services) {
             modal.style.display = "none";
         }
     };
+
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
 
     document.getElementById("msgTxt").innerHTML = "Instructions: \n1) Place  your  ships  on  the  board  either  vertically  or  horizontally \n2)" +
         "Sink  the  enemy  ships  by  selecting  a  square  and  hitting  the  FIRE  button,  first  player  to  sink  his/her  opponent's  ship  is  the  victor \n3)Click  the  ready " +
@@ -79,8 +85,12 @@ function BoardController($scope, Services) {
 
             } else {
                 socket.emit("fire", x);
+		var rnd = getRandomInt(1, 4);
+           	var sound = document.getElementById("shoot" + rnd);
+           	sound.play();
                 document.getElementById("fireButton").disabled = true;
                 fireBtn.className = "firebutton";
+		
             }
         }
         if (this.game == 2) {
@@ -95,8 +105,8 @@ function BoardController($scope, Services) {
 
     socket.on("miss", function (data) {
         if (data.userName !== this.userName) {
-            document.getElementById("msgTxt").innerHTML = data.userName + "_missed";
-            modal.style.display = "block";
+            document.getElementById("msgTxt").innerHTML = data.userName + " missed";
+            //modal.style.display = "block";
             document.getElementById("fireButton").disabled = false;
             //notify user of a miss? Maybe audio clip
         } else {
@@ -109,8 +119,8 @@ function BoardController($scope, Services) {
     socket.on("hit", function (data) {
         if (data.userName !== this.userName) {
             // alert("HIT    " + data.cell);
-            document.getElementById("msgTxt").innerHTML = data.userName + "_hit_" + data.cell;
-            modal.style.display = "block";
+            document.getElementById("msgTxt").innerHTML = data.userName + " hit";
+            // modal.style.display = "block";
             document.getElementById("fireButton").disabled = false;
 
             //notify user of hit. Audio clip
@@ -126,7 +136,7 @@ function BoardController($scope, Services) {
     socket.on("gameover", function (data) {
         $scope.game = 2;
         fireBtn.innerHTML = "New game";
-        document.getElementById("msgTxt").innerHTML = "Game Over!_" + data.userName + "_wins!";
+        document.getElementById("msgTxt").innerHTML = "Game Over! " + data.userName + " wins!";
         modal.style.display = "block";
         document.getElementById("fireButton").disabled = false;
 

@@ -4,17 +4,17 @@
 <div class="page">
     <div id="grid" class="item grid">
         <div class="row">
-            <div id="a1" class="square" ng-click="onClick($event)">A1</div>
-            <div id="b1" class="square" ng-click="onClick($event)">B</div>
-            <div id="c1" class="square" ng-click="onClick($event)">C</div>
-            <div id="d1" class="square" ng-click="onClick($event)">D</div>
-            <div id="e1" class="square" ng-click="onClick($event)">E</div>
-            <div id="f1" class="square" ng-click="onClick($event)">F</div>
-            <div id="g1" class="square" ng-click="onClick($event)">G</div>
-            <div id="h1" class="square" ng-click="onClick($event)">H</div>
+            <div id="a1" class="square" ng-click="onClick($event)"></div>
+            <div id="b1" class="square" ng-click="onClick($event)"></div>
+            <div id="c1" class="square" ng-click="onClick($event)"></div>
+            <div id="d1" class="square" ng-click="onClick($event)"></div>
+            <div id="e1" class="square" ng-click="onClick($event)"></div>
+            <div id="f1" class="square" ng-click="onClick($event)"></div>
+            <div id="g1" class="square" ng-click="onClick($event)"></div>
+            <div id="h1" class="square" ng-click="onClick($event)"></div>
         </div>
         <div class="row">
-            <div id="a2" class="square" ng-click="onClick($event)">2</div>
+            <div id="a2" class="square" ng-click="onClick($event)"></div>
             <div id="b2" class="square" ng-click="onClick($event)"></div>
             <div id="c2" class="square" ng-click="onClick($event)"></div>
             <div id="d2" class="square" ng-click="onClick($event)"></div>
@@ -24,7 +24,7 @@
             <div id="h2" class="square" ng-click="onClick($event)"></div>
         </div>
         <div class="row">
-            <div id="a3" class="square" ng-click="onClick($event)">3</div>
+            <div id="a3" class="square" ng-click="onClick($event)"></div>
             <div id="b3" class="square" ng-click="onClick($event)"></div>
             <div id="c3" class="square" ng-click="onClick($event)"></div>
             <div id="d3" class="square" ng-click="onClick($event)"></div>
@@ -34,7 +34,7 @@
             <div id="h3" class="square" ng-click="onClick($event)"></div>
         </div>
         <div class="row">
-            <div id="a4" class="square" ng-click="onClick($event)">4</div>
+            <div id="a4" class="square" ng-click="onClick($event)"></div>
             <div id="b4" class="square" ng-click="onClick($event)"></div>
             <div id="c4" class="square" ng-click="onClick($event)"></div>
             <div id="d4" class="square" ng-click="onClick($event)"></div>
@@ -44,7 +44,7 @@
             <div id="h4" class="square" ng-click="onClick($event)"></div>
         </div>
         <div class="row">
-            <div id="a5" class="square" ng-click="onClick($event)">5</div>
+            <div id="a5" class="square" ng-click="onClick($event)"></div>
             <div id="b5" class="square" ng-click="onClick($event)"></div>
             <div id="c5" class="square" ng-click="onClick($event)"></div>
             <div id="d5" class="square" ng-click="onClick($event)"></div>
@@ -54,7 +54,7 @@
             <div id="h5" class="square" ng-click="onClick($event)"></div>
         </div>
         <div class="row">
-            <div id="a6" class="square" ng-click="onClick($event)">6</div>
+            <div id="a6" class="square" ng-click="onClick($event)"></div>
             <div id="b6" class="square" ng-click="onClick($event)"></div>
             <div id="c6" class="square" ng-click="onClick($event)"></div>
             <div id="d6" class="square" ng-click="onClick($event)"></div>
@@ -64,7 +64,7 @@
             <div id="h6" class="square" ng-click="onClick($event)"></div>
         </div>
         <div class="row">
-            <div id="a7" class="square" ng-click="onClick($event)">7</div>
+            <div id="a7" class="square" ng-click="onClick($event)"></div>
             <div id="b7" class="square" ng-click="onClick($event)"></div>
             <div id="c7" class="square" ng-click="onClick($event)"></div>
             <div id="d7" class="square" ng-click="onClick($event)"></div>
@@ -74,7 +74,7 @@
             <div id="h7" class="square" ng-click="onClick($event)"></div>
         </div>
         <div class="row">
-            <div id="a8" class="square" ng-click="onClick($event)">8</div>
+            <div id="a8" class="square" ng-click="onClick($event)"></div>
             <div id="b8" class="square" ng-click="onClick($event)"></div>
             <div id="c8" class="square" ng-click="onClick($event)"></div>
             <div id="d8" class="square" ng-click="onClick($event)"></div>
@@ -87,9 +87,9 @@
 
     <div class="item ship-display">
         <div class="shipContainer">
-            <img src="../img/Aircraft%20Carrier.gif" class="ship">
+            <img src="../img/Aircraft%20Carrier%20Board.gif" class="ship">
             <img src="../img/Battleship.gif" class="ship">
-            <img src="../img/Destroyer.gif" class="ship">
+            <img src="../img/DestroyerBoard.gif" class="ship">
             <img src="../img/Battleship.gif" class="ship">
 
         </div>
@@ -99,17 +99,34 @@
         </div>
     </div>
 </div>
+
 <!-- Trigger/Open The Modal -->
 <!--<button id="myBtn">Open Modal</button>-->
-
-<div id="myModal" class="modal">
+<div id="myModal" class="modal" style="margin-top: 20%">
     <!-- Modal content -->
     <div class="modal-content">
         <span class="close">&times;</span>
-        <p id="msgTxt"></p>
+        <p id="msgTxt">Instructions: \n1) Place  your  ships  on  the  board  either  vertically  or  horizontally \n2)" +
+            "Sink  the  enemy  ships  by  selecting  a  square  and  hitting  the  FIRE  button,  first  player  to  sink  his/her  opponent's  ship  is  the  victor \n3)Click  the  ready " +
+            "button  when  ready"</p>
     </div>
     <script src="../js/window.js"></script>
 </div>
+<div id="myModalBottom" class="modal-bottom" style="">
+    <!-- Modal content -->
+    <div class="modal-content-bottom">
+        <span class="close"></span>
+        <p id="consTxt"></p>
+    </div>
+    <script src="../js/window.js"></script>
+</div>
+<audio id="shoot1" src="../sounds/Explosion.wav" ></audio>
+<audio id="shoot2" src="../sounds/Explosion1.wav" ></audio>
+<audio id="shoot3" src="../sounds/Explosion2.wav" ></audio>
+<audio id="shoot4" src="../sounds/Explosion3.wav" ></audio>
+<audio id="beginGame" src="../sounds/startGame.mp3" ></audio>
+<audio id="gameOver" src="../sounds/gameOver.mp3" ></audio>
+
 
 </body>
 
