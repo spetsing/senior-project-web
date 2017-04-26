@@ -4,7 +4,7 @@ function BoardController($scope, Services) {
     $scope.userName = Services.getData().userName;
     $scope.board = Services.getData().board;
     $scope.game = 0;
-    var socket = io.connect('http://34.195.93.38:3002:3002');
+    var socket = io.connect('http://34.195.93.38:3002');
     //paytons stuff
 
     var module = angular.module('sampleApp');
