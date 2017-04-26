@@ -156,6 +156,7 @@ io.on('connection', function (client) {
             if(err) console.error(err);
             if(documents.length > 0) {
                 documents[0].readyToPlay = true;
+                documents[0].markModified('readyToPlay');
                 documents[0].save();
                 console.log("Board " + board + " status updated to ready");
             } else {
