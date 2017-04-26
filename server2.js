@@ -164,6 +164,7 @@ io.on('connection', function (client) {
 
         boardDB.find({readyToPlay: false},function(err, documents) {
             if(err) console.error(err);
+            console.log(documents);
             if(documents.length === 0) {
                 //both users are ready. Start game
                 console.log("both players are ready, start game");
