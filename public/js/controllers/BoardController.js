@@ -140,8 +140,8 @@ function BoardController($scope, Services) {
                 var id = x + convertNumberToLetter(y);
                 document.getElementById(id).className = "square";
             }*/
-        var hits = document.querySelectorAll(".hitSquare")[0].class;
-        var miss = document.querySelectorAll(".missSquare")[0].class
+        var hits = document.querySelectorAll(".hitSquare");
+        var miss = document.querySelectorAll(".missSquare");
 
         for(var x = 0; x < hits.length; x++) {
             hits[0].className = "square";
