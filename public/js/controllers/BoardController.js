@@ -104,7 +104,7 @@ function BoardController($scope, Services) {
 
     socket.on("miss", function (data) {
         if (data.userName !== this.userName) {
-            document.getElementById("msgTxt").innerHTML = data.userName + " missed";
+            document.getElementById("consTxt").innerHTML = data.userName + " missed";
             // modal.style.display = "block";
             document.getElementById("fireButton").disabled = false;
             //notify user of a miss? Maybe audio clip
@@ -118,7 +118,7 @@ function BoardController($scope, Services) {
     socket.on("hit", function (data) {
         if (data.userName !== this.userName) {
             // alert("HIT    " + data.cell);
-            document.getElementById("msgTxt").innerHTML = data.userName + " hit";
+            document.getElementById("consTxt").innerHTML = data.userName + " hit";
             //modal.style.display = "block";
             document.getElementById("fireButton").disabled = false;
 
