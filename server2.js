@@ -223,7 +223,7 @@ io.on('connection', function (client) {
             health: data.coords.length
         })*/
         shipCordDB.find({board:data.board}, function(err, documents) {
-            documents[0].coordinates = data.coords.length;
+            documents[0].coordinates = data.coords;
             documents[0].health = data.coords.length;
             documents[0].save();
         })
