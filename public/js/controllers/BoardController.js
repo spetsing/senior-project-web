@@ -136,6 +136,7 @@ function BoardController($scope, Services) {
         $scope.game = 2;
         fireBtn.innerHTML = "New game";
         document.getElementById("msgTxt").innerHTML = "Game Over! " + data.userName + " wins!";
+        document.getElementById("consTxt").innerHTML = "";
         modal.style.display = "block";
         document.getElementById("fireButton").disabled = false;
 
