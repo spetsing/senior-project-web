@@ -11,13 +11,13 @@ function MainController($scope, $http, Services, $location) {
 
     socket = io.connect('http://34.195.93.38:3002');
 
-        socket.on('connect', function (data) {
-            console.log(data);
-            console.log("Sockets Connected");
+    socket.on('connect', function (data) {
+        console.log(data);
+        console.log("Sockets Connected");
 
-        });
+    });
 
-    $scope.sendHit = function() {
+    $scope.sendHit = function () {
         var x = {
             board: $("#board").val(),
             cell: $("#cell").val()
@@ -26,8 +26,8 @@ function MainController($scope, $http, Services, $location) {
         socket.emit("sendHit", x);
     }
 
-    $scope.resetLED = function() {
-        socket.emit("turnOffLED","");
+    $scope.resetLED = function () {
+        socket.emit("turnOffLED", "");
     }
 
     var module = angular.module('sampleApp');
@@ -118,9 +118,9 @@ function MainController($scope, $http, Services, $location) {
         });
 
         socket.on("gameReady", function (data) {
-           console.log("Game Ready Routing to board");
-                    this.location.path("/board");
-                    this.$apply();
+            console.log("Game Ready Routing to board");
+            this.location.path("/board");
+            this.$apply();
             /* $.ajax({
                 type: 'GET',
                 url: 'http://34.195.93.38:3002/resetHealth',
@@ -179,6 +179,24 @@ function MainController($scope, $http, Services, $location) {
                 //  this.connectSockets();
             }.bind(this)
         });
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    };
+    var audio = new Audio("../sounds/player1.wav");
+
+    function playerOne() {
+        var audio = document.getElementById("radio1");
+        audio.play();
+    }
+
+    function playerTwo() {
+        var audio = document.getElementById("radio2");
+        audio.play();
     }
 }
 

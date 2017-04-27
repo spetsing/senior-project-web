@@ -39,6 +39,26 @@
         <!-- WHERE ANGULAR VIEW IS INJECTED -->
         <div ng-view></div>
     </div>
+
+    <audio id="audio" src="sounds/player1.wav"></audio>
+    <audio id="begin" src="sounds/Begin.wav"></audio>
+    <script>
+        var audio = new Audio('img/Theme.wav');
+        audio.play();
+
+        function PlayerPick() {
+            var sound = document.getElementById("audio");
+            sound.play()
+        }
+
+        function BeginSound() {
+            var sound = document.getElementById("begin");
+            sound.play();
+            audio.pause();
+            audio.currentTime = 0;
+        }
+
+    </script>
 </body>
 
 </html>

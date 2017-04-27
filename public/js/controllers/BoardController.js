@@ -6,6 +6,12 @@ function BoardController($scope, Services) {
     $scope.game = 0;
     var socket = io.connect('http://34.195.93.38:3002');
     //paytons stuff
+    var audio = document.getElementById("beginGame");
+    audio.play();
+
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
 
     var module = angular.module('sampleApp');
     // Get the modal
@@ -81,6 +87,9 @@ function BoardController($scope, Services) {
                 socket.emit("fire", x);
                 document.getElementById("fireButton").disabled = true;
                 fireBtn.className = "firebutton";
+                var rnd = getRandomInt(1, 4);
+                var sound = document.getElementById("shoot" + rnd);
+                sound.play();
             }
         }
         if (this.game == 2) {
@@ -95,8 +104,8 @@ function BoardController($scope, Services) {
 
     socket.on("miss", function (data) {
         if (data.userName !== this.userName) {
-            document.getElementById("msgTxt").innerHTML = data.userName + "_missed";
-            modal.style.display = "block";
+            document.getElementById("msgTxt").innerHTML = data.userName + " missed";
+            // modal.style.display = "block";
             document.getElementById("fireButton").disabled = false;
             //notify user of a miss? Maybe audio clip
         } else {
@@ -109,8 +118,8 @@ function BoardController($scope, Services) {
     socket.on("hit", function (data) {
         if (data.userName !== this.userName) {
             // alert("HIT    " + data.cell);
-            document.getElementById("msgTxt").innerHTML = data.userName + "_hit_" + data.cell;
-            modal.style.display = "block";
+            document.getElementById("msgTxt").innerHTML = data.userName + " hit";
+            //modal.style.display = "block";
             document.getElementById("fireButton").disabled = false;
 
             //notify user of hit. Audio clip
@@ -126,7 +135,7 @@ function BoardController($scope, Services) {
     socket.on("gameover", function (data) {
         $scope.game = 2;
         fireBtn.innerHTML = "New game";
-        document.getElementById("msgTxt").innerHTML = "Game Over!_" + data.userName + "_wins!";
+        document.getElementById("msgTxt").innerHTML = "Game Over! " + data.userName + " wins!";
         modal.style.display = "block";
         document.getElementById("fireButton").disabled = false;
 
@@ -134,19 +143,19 @@ function BoardController($scope, Services) {
 
 
 
-    $scope.resetBoard = function() {
-       /* for(var x = 0; x < 8; x++)
-            for(var y = 0; y < 8; x++) {
-                var id = x + convertNumberToLetter(y);
-                document.getElementById(id).className = "square";
-            }*/
+    $scope.resetBoard = function () {
+        /* for(var x = 0; x < 8; x++)
+             for(var y = 0; y < 8; x++) {
+                 var id = x + convertNumberToLetter(y);
+                 document.getElementById(id).className = "square";
+             }*/
         var hits = document.querySelectorAll(".hitSquare");
         var miss = document.querySelectorAll(".missSquare");
 
-        for(var x = 0; x < hits.length; x++) {
+        for (var x = 0; x < hits.length; x++) {
             hits[x].className = "square";
         }
-         for(var x = 0; x < miss.length; x++) {
+        for (var x = 0; x < miss.length; x++) {
             miss[x].className = "square";
         }
 
